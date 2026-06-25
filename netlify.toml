@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+
+[functions]
+  external_node_modules = ["firebase-admin", "jose", "jwks-rsa"]
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
