@@ -20,6 +20,9 @@
     "resend": "^6.14.0",
     "server-only": "^0.0.1"
   },
+  "overrides": {
+    "jose": "^4.15.9"
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
