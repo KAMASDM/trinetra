@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { adminDb } from "@/lib/firebase-admin";
 import { getOrderById, markOrderPaid } from "@/lib/data/orders";
 import { upsertCustomerFromOrder } from "@/lib/data/customers";
@@ -52,6 +53,9 @@ export async function POST(request: NextRequest) {
 
     const paidOrder = await getOrderById(payload.orderId);
     if (paidOrder) await upsertCustomerFromOrder(paidOrder);
+
+    revalidatePath("/shop");
+    revalidatePath("/");
   }
 
   return NextResponse.json({ ok: true, orderId: payload.orderId });

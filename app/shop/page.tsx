@@ -8,8 +8,10 @@ export const metadata = {
   description: "Shop Trinetra bridal lehengas, kurtas, chaniya cholis, dress materials, blouses and ethnic wear.",
 };
 
-// Catalog is read live from Firestore, so render per-request rather than at build time.
-export const dynamic = "force-dynamic";
+// Catalog comes from Firestore. Cache the page and refresh periodically
+// (and instantly on product create/update/delete via revalidatePath in
+// app/admin/actions.ts) instead of querying Firestore on every visitor.
+export const revalidate = 300;
 
 export default async function ShopPage() {
   const products = await listPublishedProducts();

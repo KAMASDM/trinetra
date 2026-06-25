@@ -10,9 +10,11 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
-// Featured products are read live from Firestore via FeaturedCommerce, so
-// this page is rendered per-request rather than prerendered at build time.
-export const dynamic = "force-dynamic";
+// Featured products come from Firestore via FeaturedCommerce. Cache the
+// rendered page and refresh it periodically (and instantly on product
+// create/update/delete via revalidatePath in app/admin/actions.ts) instead
+// of hitting Firestore on every single visitor.
+export const revalidate = 300;
 
 export default function Home() {
   return (

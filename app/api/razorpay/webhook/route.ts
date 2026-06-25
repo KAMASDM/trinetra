@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { adminDb } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { getOrderById, getOrderByRazorpayOrderId, markOrderPaid, markOrderPaymentFailed } from "@/lib/data/orders";
@@ -47,6 +48,9 @@ export async function POST(request: NextRequest) {
 
       const paidOrder = await getOrderById(order.id);
       if (paidOrder) await upsertCustomerFromOrder(paidOrder);
+
+      revalidatePath("/shop");
+      revalidatePath("/");
     }
   } else if (event.event === "payment.failed") {
     await markOrderPaymentFailed(order.id, payment?.error_description);

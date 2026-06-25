@@ -7,8 +7,10 @@ import AddToCartPanel from "@/components/ecommerce/AddToCartPanel";
 import { formatPrice } from "@/lib/products";
 import { getProductBySlug } from "@/lib/data/products";
 
-// Product detail is read live from Firestore, so render per-request rather than at build time.
-export const dynamic = "force-dynamic";
+// Product detail comes from Firestore. Cache the page and refresh
+// periodically (and instantly on edits via revalidatePath in
+// app/admin/actions.ts) instead of querying Firestore on every visitor.
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
