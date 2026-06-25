@@ -13,6 +13,7 @@ export default function ProductGrid({ products }: { products: Product[] }) {
   const [category, setCategory] = useState("All");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<(typeof sortOptions)[number]>("Featured");
+  const [justAdded, setJustAdded] = useState<string | null>(null);
 
   const visibleProducts = useMemo(() => {
     const filtered = products.filter((product) => {
@@ -99,6 +100,11 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                           {product.badge}
                         </span>
                       )}
+                      {product.inventory <= 5 && (
+                        <span className="absolute right-3 top-3 bg-crimson px-3 py-1 text-[9px] uppercase tracking-[0.28em] text-warm-white">
+                          {product.inventory <= 0 ? "Out Of Stock" : `Only ${product.inventory} Left`}
+                        </span>
+                      )}
                     </div>
                   </Link>
                   <div className="p-5">
@@ -111,10 +117,15 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                       <p className="font-cinzel text-base text-crimson">{formatPrice(product.price)}</p>
                       <button
                         type="button"
-                        onClick={() => cart.addItem(product)}
-                        className="border border-gold/40 px-3 py-2 text-[10px] uppercase tracking-[0.25em] text-charcoal hover:bg-gold"
+                        disabled={product.inventory <= 0}
+                        onClick={() => {
+                          cart.addItem(product);
+                          setJustAdded(product.id);
+                          window.setTimeout(() => setJustAdded(null), 1500);
+                        }}
+                        className="border border-gold/40 px-3 py-2 text-[10px] uppercase tracking-[0.25em] text-charcoal hover:bg-gold disabled:opacity-40 disabled:cursor-not-allowed"
                       >
-                        Add
+                        {justAdded === product.id ? "Added" : "Add"}
                       </button>
                     </div>
                   </div>

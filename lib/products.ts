@@ -1,47 +1,13 @@
-export type ProductCategory =
-  | "Bridal Lehengas"
-  | "Heritage Sarees"
-  | "Dress Materials"
-  | "Designer Kurtas"
-  | "Chaniya Choli"
-  | "Punjabi Suits"
-  | "Bridal Blouses"
-  | "Mens Ethnic Wear";
+import { formatPrice, productCategories } from "@/lib/types";
+import type { Product, ProductCategory } from "@/lib/types";
 
-export type Product = {
-  id: string;
-  slug: string;
-  name: string;
-  category: ProductCategory;
-  price: number;
-  compareAtPrice?: number;
-  image: string;
-  gallery: string[];
-  badge?: string;
-  story: string;
-  description: string;
-  fabric: string;
-  craft: string[];
-  colors: string[];
-  sizes: string[];
-  inventory: number;
-  dispatch: string;
-  customizable: boolean;
-  bestseller?: boolean;
-  newArrival?: boolean;
-};
+export type { Product, ProductCategory };
+export { formatPrice, productCategories };
 
-export const productCategories: ProductCategory[] = [
-  "Bridal Lehengas",
-  "Heritage Sarees",
-  "Dress Materials",
-  "Designer Kurtas",
-  "Chaniya Choli",
-  "Punjabi Suits",
-  "Bridal Blouses",
-  "Mens Ethnic Wear",
-];
-
+/**
+ * Static seed catalog — source data for scripts/seed-products.ts.
+ * The live storefront reads from Firestore via lib/data/products.ts.
+ */
 export const products: Product[] = [
   {
     id: "trl-001",
@@ -200,14 +166,6 @@ export const products: Product[] = [
     customizable: false,
   },
 ];
-
-export function formatPrice(price: number) {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 0,
-  }).format(price);
-}
 
 export function getProductBySlug(slug: string) {
   return products.find((product) => product.slug === slug);

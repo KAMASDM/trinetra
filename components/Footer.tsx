@@ -2,8 +2,8 @@ import Image from "next/image";
 
 const footerLinks = {
   Collections: ["Shop All", "Bridal Lehengas", "Dress Materials", "Designer Kurtas", "Chaniya Choli", "Bridal Blouses"],
-  Studio: ["Our Heritage", "Craftsmanship", "Bridal Consult", "Book Appointment", "Admin"],
-  Policies: ["Privacy Policy", "Shipping Policy", "Returns & Exchanges", "Care Guide", "FAQs"],
+  Studio: ["Our Heritage", "Craftsmanship", "Bridal Consult", "Book Appointment", "My Orders", "Admin"],
+  Policies: ["Terms & Conditions", "Privacy Policy", "Refund Policy", "Track Order"],
 };
 
 const footerHrefs: Record<string, string> = {
@@ -17,7 +17,12 @@ const footerHrefs: Record<string, string> = {
   Craftsmanship: "/#craftsmanship",
   "Bridal Consult": "/#bridal",
   "Book Appointment": "/#contact",
+  "My Orders": "/account/orders",
   Admin: "/admin",
+  "Terms & Conditions": "/terms",
+  "Privacy Policy": "/privacy",
+  "Refund Policy": "/refund-policy",
+  "Track Order": "/track-order",
 };
 
 export default function Footer() {

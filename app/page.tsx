@@ -10,6 +10,10 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
+// Featured products are read live from Firestore via FeaturedCommerce, so
+// this page is rendered per-request rather than prerendered at build time.
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <main className="min-h-screen">

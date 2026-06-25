@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import CartDrawer from "@/components/ecommerce/CartDrawer";
+import { useCart } from "@/components/ecommerce/CartContext";
 
 const navLinks = [
   { label: "Shop", href: "/shop" },
@@ -15,6 +17,8 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const cart = useCart();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -76,9 +80,12 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link href="/cart" className="btn-outline-gold text-[11px] py-3 px-5">
-            Cart
+          <Link href="/account/orders" className="text-[11px] uppercase tracking-[0.3em] text-warm-white/70 hover:text-gold">
+            Account
           </Link>
+          <button onClick={() => setCartOpen(true)} className="btn-outline-gold text-[11px] py-3 px-5">
+            Cart ({cart.count})
+          </button>
           <Link href="/admin" className="btn-gold text-[11px] py-3 px-6">
             Admin
           </Link>
@@ -128,9 +135,25 @@ export default function Navbar() {
               </li>
             ))}
             <li>
-              <Link href="/cart" className="btn-outline-gold inline-flex text-[11px] py-3 px-6 mt-2">
-                Cart
+              <Link
+                href="/account/orders"
+                onClick={() => setMobileOpen(false)}
+                className="text-warm-white/70 hover:text-gold transition-colors text-[11px] tracking-[0.3em] uppercase"
+                style={{ fontFamily: "var(--font-jost), sans-serif" }}
+              >
+                Account
               </Link>
+            </li>
+            <li>
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  setCartOpen(true);
+                }}
+                className="btn-outline-gold inline-flex text-[11px] py-3 px-6 mt-2"
+              >
+                Cart ({cart.count})
+              </button>
             </li>
             <li>
               <Link href="/admin" className="btn-gold inline-flex text-[11px] py-3 px-6 mt-2">
@@ -140,6 +163,7 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </nav>
   );
 }

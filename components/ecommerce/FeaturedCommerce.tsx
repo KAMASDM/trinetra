@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatPrice, getFeaturedProducts } from "@/lib/products";
+import { formatPrice } from "@/lib/products";
+import { getFeaturedProducts } from "@/lib/data/products";
 
-export default function FeaturedCommerce() {
-  const featured = getFeaturedProducts();
+export default async function FeaturedCommerce() {
+  const featured = await getFeaturedProducts();
 
   return (
     <section className="relative py-24 linen-bg" id="shop-preview">

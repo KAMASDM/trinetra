@@ -1,14 +1,19 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductGrid from "@/components/ecommerce/ProductGrid";
-import { products } from "@/lib/products";
+import { listPublishedProducts } from "@/lib/data/products";
 
 export const metadata = {
   title: "Shop | Trinetra By Rajababu",
   description: "Shop Trinetra bridal lehengas, kurtas, chaniya cholis, dress materials, blouses and ethnic wear.",
 };
 
-export default function ShopPage() {
+// Catalog is read live from Firestore, so render per-request rather than at build time.
+export const dynamic = "force-dynamic";
+
+export default async function ShopPage() {
+  const products = await listPublishedProducts();
+
   return (
     <main>
       <Navbar />

@@ -11,8 +11,16 @@ export default function AddToCartPanel({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
 
+  const outOfStock = product.inventory <= 0;
+  const lowStock = !outOfStock && product.inventory <= 5;
+
   return (
     <div className="border border-gold/25 bg-warm-white/70 p-5">
+      {(outOfStock || lowStock) && (
+        <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-crimson">
+          {outOfStock ? "Out of stock" : `Only ${product.inventory} left`}
+        </p>
+      )}
       <div className="mb-5">
         <p className="text-[10px] uppercase tracking-[0.35em] text-taupe mb-3">Size</p>
         <div className="flex flex-wrap gap-2">
@@ -72,14 +80,15 @@ export default function AddToCartPanel({ product }: { product: Product }) {
 
       <button
         type="button"
-        className="btn-gold w-full justify-center"
+        disabled={outOfStock}
+        className="btn-gold w-full justify-center disabled:opacity-40 disabled:cursor-not-allowed"
         onClick={() => {
           cart.addItem(product, { color, quantity, size });
           setAdded(true);
           window.setTimeout(() => setAdded(false), 1800);
         }}
       >
-        {added ? "Added To Cart" : "Add To Cart"}
+        {outOfStock ? "Out Of Stock" : added ? "Added To Cart" : "Add To Cart"}
       </button>
 
       {product.customizable && (

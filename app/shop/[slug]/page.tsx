@@ -4,15 +4,15 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AddToCartPanel from "@/components/ecommerce/AddToCartPanel";
-import { formatPrice, getProductBySlug, products } from "@/lib/products";
+import { formatPrice } from "@/lib/products";
+import { getProductBySlug } from "@/lib/data/products";
 
-export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
-}
+// Product detail is read live from Firestore, so render per-request rather than at build time.
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   return {
     title: product ? `${product.name} | Trinetra By Rajababu` : "Product | Trinetra",
     description: product?.story,
@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
-  if (!product) notFound();
+  const product = await getProductBySlug(slug);
+  if (!product || product.status !== "published") notFound();
 
   return (
     <main>

@@ -1,0 +1,21 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // All writes go through the server (Firebase Admin SDK), which bypasses
+    // these rules entirely. These rules only govern direct client access.
+
+    match /products/{productId} {
+      allow get, list: if resource.data.status == "published";
+      allow write: if false;
+    }
+
+    match /orders/{orderId} {
+      allow read, write: if false;
+    }
+
+    match /customers/{customerId} {
+      allow read, write: if false;
+    }
+  }
+}
