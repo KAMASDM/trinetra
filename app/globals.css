@@ -1,26 +1,412 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────
+   BRAND PALETTE & DESIGN TOKENS
+────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --crimson: #8B1A1A;
+  --deep-crimson: #5C0E0E;
+  --gold: #C9922A;
+  --gold-light: #E4B84A;
+  --gold-pale: #F5E6C0;
+  --ivory: #FAF6EE;
+  --warm-white: #FFFDF8;
+  --charcoal: #1E1610;
+  --taupe: #7A6A5A;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand colors */
+  --color-crimson: #8B1A1A;
+  --color-deep-crimson: #5C0E0E;
+  --color-gold: #C9922A;
+  --color-gold-light: #E4B84A;
+  --color-gold-pale: #F5E6C0;
+  --color-ivory: #FAF6EE;
+  --color-warm-white: #FFFDF8;
+  --color-charcoal: #1E1610;
+  --color-taupe: #7A6A5A;
+
+  /* Typography */
+  --font-cinzel: var(--font-cinzel-var), serif;
+  --font-cormorant: var(--font-cormorant-var), serif;
+  --font-jost: var(--font-jost-var), sans-serif;
+
+  /* Keyframes → animations */
+  --animate-draw-thread: drawThread 4s ease-in-out forwards;
+  --animate-draw-thread-slow: drawThread 5.5s ease-in-out forwards;
+  --animate-shimmer-gold: shimmerGold 3s linear infinite;
+  --animate-marquee: scrollMarquee 35s linear infinite;
+  --animate-float-up: floatUp 4s ease-in-out infinite;
+  --animate-fade-in-up: fadeInUp 0.9s ease-out forwards;
+  --animate-fade-in: fadeIn 1.2s ease-out forwards;
+  --animate-rotate-slow: rotateSlow 25s linear infinite;
+  --animate-pulse-gold: pulseGold 2.5s ease-in-out infinite;
+  --animate-border-draw: borderDraw 3s ease forwards;
+  --animate-draw-sub: drawThread 3.5s ease-in-out forwards 1.2s;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ──────────────────────────────────────────
+   KEYFRAME ANIMATIONS
+────────────────────────────────────────── */
+@keyframes drawThread {
+  from { stroke-dashoffset: 3000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes shimmerGold {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes scrollMarquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes fadeInUp {
+  0%   { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulseGold {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.06); }
+}
+
+@keyframes borderDraw {
+  from { stroke-dashoffset: 2000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* ──────────────────────────────────────────
+   BASE STYLES
+────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--ivory);
+  color: var(--charcoal);
+  font-family: var(--font-jost), 'Jost', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* ──────────────────────────────────────────
+   SVG STITCH ANIMATION CLASSES
+────────────────────────────────────────── */
+.stitch-draw {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  animation: drawThread 4s ease-in-out forwards;
+}
+
+.stitch-draw-sub {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  animation: drawThread 3.5s ease-in-out forwards 1.2s;
+}
+
+/* Static stitched look — dashed stroke, no animation */
+.stitch-static {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.4;
+  stroke-dasharray: 5 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.stitch-static-crimson {
+  fill: none;
+  stroke: var(--crimson);
+  stroke-width: 1.4;
+  stroke-dasharray: 5 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Filled with very light gold tint – acts as fallback while animation plays */
+.stitch-fill-ghost {
+  fill: rgba(201, 146, 42, 0.08);
+  stroke: none;
+}
+
+/* ──────────────────────────────────────────
+   STITCHED HEADING (HTML elements)
+────────────────────────────────────────── */
+.heading-stitched {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.heading-stitched::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--gold) 0px,
+    var(--gold) 5px,
+    transparent 5px,
+    transparent 9px
+  );
+  opacity: 0.65;
+}
+
+/* Cross-stitch eyebrow text */
+.eyebrow-stitch {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eyebrow-stitch::before,
+.eyebrow-stitch::after {
+  content: '✕';
+  opacity: 0.55;
+  font-size: 0.65rem;
+}
+
+/* ──────────────────────────────────────────
+   GOLD SHIMMER TEXT
+────────────────────────────────────────── */
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--gold)       0%,
+    var(--gold-light) 30%,
+    var(--gold-pale)  50%,
+    var(--gold-light) 70%,
+    var(--gold)       100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerGold 3.5s linear infinite;
+}
+
+/* ──────────────────────────────────────────
+   LINEN TEXTURE
+────────────────────────────────────────── */
+.linen-bg {
+  background-image: url('/linen-bg.avif');
+  background-repeat: repeat;
+  background-size: 320px 320px;
+}
+
+/* ──────────────────────────────────────────
+   DECORATIVE DIVIDERS
+────────────────────────────────────────── */
+.divider-gold {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    var(--crimson),
+    var(--gold),
+    transparent
+  );
+}
+
+.divider-dash {
+  width: 100%;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--gold) 0px,
+    var(--gold) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: 0.5;
+}
+
+/* ──────────────────────────────────────────
+   CARD STYLES
+────────────────────────────────────────── */
+.collection-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(201, 146, 42, 0.25);
+  outline: 1px solid rgba(201, 146, 42, 0.1);
+  outline-offset: 4px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.collection-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(30, 22, 16, 0.6) 75%,
+    rgba(30, 22, 16, 0.85) 100%
+  );
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+
+.collection-card:hover::before {
+  background: linear-gradient(
+    180deg,
+    transparent 20%,
+    rgba(30, 22, 16, 0.75) 65%,
+    rgba(30, 22, 16, 0.92) 100%
+  );
+}
+
+.collection-card:hover .card-inner {
+  transform: scale(1.06);
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
+}
+
+/* ──────────────────────────────────────────
+   ANIMATED SCROLL FADE-IN
+────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ──────────────────────────────────────────
+   BUTTON STYLES
+────────────────────────────────────────── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2.2rem;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--charcoal);
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  text-decoration: none;
+}
+
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background 0.4s ease;
+}
+
+.btn-gold:hover::after {
+  background: rgba(255,255,255,0.15);
+}
+
+.btn-outline-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2.2rem;
+  background: transparent;
+  color: var(--gold-light);
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  border: 1px solid rgba(228, 184, 74, 0.5);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-decoration: none;
+}
+
+.btn-outline-gold:hover {
+  background: rgba(201, 146, 42, 0.1);
+  border-color: var(--gold-light);
+}
+
+.admin-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--taupe);
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.admin-input {
+  width: 100%;
+  border: 1px solid rgba(201, 146, 42, 0.25);
+  background: var(--ivory);
+  padding: 0.75rem;
+  color: var(--charcoal);
+  outline: none;
+}
+
+.admin-input:focus {
+  border-color: var(--crimson);
+}
+
+/* ──────────────────────────────────────────
+   SCROLLBAR STYLING
+────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--charcoal); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }

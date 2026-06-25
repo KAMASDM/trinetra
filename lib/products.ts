@@ -1,0 +1,218 @@
+export type ProductCategory =
+  | "Bridal Lehengas"
+  | "Heritage Sarees"
+  | "Dress Materials"
+  | "Designer Kurtas"
+  | "Chaniya Choli"
+  | "Punjabi Suits"
+  | "Bridal Blouses"
+  | "Mens Ethnic Wear";
+
+export type Product = {
+  id: string;
+  slug: string;
+  name: string;
+  category: ProductCategory;
+  price: number;
+  compareAtPrice?: number;
+  image: string;
+  gallery: string[];
+  badge?: string;
+  story: string;
+  description: string;
+  fabric: string;
+  craft: string[];
+  colors: string[];
+  sizes: string[];
+  inventory: number;
+  dispatch: string;
+  customizable: boolean;
+  bestseller?: boolean;
+  newArrival?: boolean;
+};
+
+export const productCategories: ProductCategory[] = [
+  "Bridal Lehengas",
+  "Heritage Sarees",
+  "Dress Materials",
+  "Designer Kurtas",
+  "Chaniya Choli",
+  "Punjabi Suits",
+  "Bridal Blouses",
+  "Mens Ethnic Wear",
+];
+
+export const products: Product[] = [
+  {
+    id: "trl-001",
+    slug: "rajwada-zardozi-bridal-lehenga",
+    name: "Rajwada Zardozi Bridal Lehenga",
+    category: "Bridal Lehengas",
+    price: 128000,
+    compareAtPrice: 148000,
+    image: "/bridal-lehenga.jpg",
+    gallery: ["/bridal-lehenga.jpg", "/pink-kurti-skirt.jpg"],
+    badge: "Bespoke",
+    story: "A ceremonial lehenga made for heirloom wardrobes, finished with old-world zardozi and tonal sequin highlights.",
+    description: "Hand-embroidered bridal lehenga with dupatta, blouse piece, can-can finishing and assisted measurements.",
+    fabric: "Katan silk with silk lining",
+    craft: ["Zardozi", "Aari", "Gota patti", "Hand finishing"],
+    colors: ["Crimson", "Antique Gold", "Rose"],
+    sizes: ["Made to Measure"],
+    inventory: 3,
+    dispatch: "21-35 days",
+    customizable: true,
+    bestseller: true,
+  },
+  {
+    id: "trk-002",
+    slug: "ivory-linen-kurta-set",
+    name: "Ivory Linen Kurta Set",
+    category: "Designer Kurtas",
+    price: 6800,
+    image: "/white-linen-kurti.jpg",
+    gallery: ["/white-linen-kurti.jpg", "/colourful-kurtis.jpg"],
+    badge: "Ready To Ship",
+    story: "Quiet luxury for warm days, cut in breathable linen and edged with subtle hand details.",
+    description: "Straight kurta with coordinated bottoms, soft inner finishing and optional dupatta pairing.",
+    fabric: "Premium linen cotton",
+    craft: ["Hand stitch detail", "Block-inspired border"],
+    colors: ["Ivory", "Sand Gold"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    inventory: 18,
+    dispatch: "2-4 days",
+    customizable: true,
+    newArrival: true,
+  },
+  {
+    id: "trs-003",
+    slug: "pearl-sharara-festive-suit",
+    name: "Pearl Sharara Festive Suit",
+    category: "Punjabi Suits",
+    price: 18500,
+    image: "/white-sharara-set.jpg",
+    gallery: ["/white-sharara-set.jpg", "/pink-palazzo-suit.jpg"],
+    badge: "Festive Edit",
+    story: "A graceful sharara set for engagement lunches, poojas and refined evening festivities.",
+    description: "Embroidered kurta, sharara and dupatta set with scalloped borders and finished seams.",
+    fabric: "Georgette with cotton silk lining",
+    craft: ["Resham", "Mirror accents", "Scallop border"],
+    colors: ["Pearl", "Blush", "Gold"],
+    sizes: ["S", "M", "L", "XL"],
+    inventory: 9,
+    dispatch: "5-8 days",
+    customizable: true,
+    bestseller: true,
+  },
+  {
+    id: "trc-004",
+    slug: "rangraas-mirror-chaniya-choli",
+    name: "Rangraas Mirror Chaniya Choli",
+    category: "Chaniya Choli",
+    price: 26500,
+    image: "/pink-kurti-skirt.jpg",
+    gallery: ["/pink-kurti-skirt.jpg", "/pink-palazzo-suit.jpg"],
+    badge: "Navratri",
+    story: "Full of movement, colour and mirror sparkle for garba nights that stay bright till morning.",
+    description: "Panelled chaniya, blouse and dupatta set with mirror-work, tassels and adjustable finishing.",
+    fabric: "Cotton silk and modal blend",
+    craft: ["Mirror work", "Thread embroidery", "Tassel finishing"],
+    colors: ["Rani Pink", "Marigold", "Emerald"],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    inventory: 12,
+    dispatch: "7-10 days",
+    customizable: true,
+  },
+  {
+    id: "trd-005",
+    slug: "grey-silk-dress-material",
+    name: "Grey Silk Dress Material",
+    category: "Dress Materials",
+    price: 9200,
+    image: "/grey-silk-suit.jpg",
+    gallery: ["/grey-silk-suit.jpg", "/kurtis-collection.jpg"],
+    badge: "Unstitched",
+    story: "A versatile silk suit material curated for patrons who prefer their trusted tailor and personal silhouette.",
+    description: "Three-piece unstitched dress material with kurta fabric, bottom fabric and dupatta.",
+    fabric: "Silk blend with woven dupatta",
+    craft: ["Woven motif", "Hand-selected textile"],
+    colors: ["Dove Grey", "Silver", "Charcoal"],
+    sizes: ["Unstitched"],
+    inventory: 24,
+    dispatch: "2-4 days",
+    customizable: false,
+  },
+  {
+    id: "trb-006",
+    slug: "midnight-brocade-bridal-blouse",
+    name: "Midnight Brocade Bridal Blouse",
+    category: "Bridal Blouses",
+    price: 15800,
+    image: "/black-brocade-blouse.jpg",
+    gallery: ["/black-brocade-blouse.jpg", "/black-blouse-back.jpg", "/open-back-blouse.jpg"],
+    badge: "Custom Fit",
+    story: "A statement blouse with structured fit and a dramatic back, made to complete sarees and lehengas.",
+    description: "Brocade blouse with padded structure, back detailing, hooks, margins and made-to-measure fitting.",
+    fabric: "Silk brocade",
+    craft: ["Brocade", "Back embroidery", "Structured tailoring"],
+    colors: ["Midnight Black", "Antique Gold"],
+    sizes: ["Made to Measure"],
+    inventory: 7,
+    dispatch: "10-14 days",
+    customizable: true,
+  },
+  {
+    id: "trm-007",
+    slug: "safed-resham-mens-kurta",
+    name: "Safed Resham Mens Kurta",
+    category: "Mens Ethnic Wear",
+    price: 12500,
+    image: "/mens-ethnic-wear.jpg",
+    gallery: ["/mens-ethnic-wear.jpg"],
+    badge: "Groom Squad",
+    story: "A crisp men’s kurta for family ceremonies, coordinated with understated resham texture.",
+    description: "Mens kurta with optional churidar and jacket consultation for groom-side styling.",
+    fabric: "Silk cotton",
+    craft: ["Resham texture", "Tailored placket"],
+    colors: ["Ivory", "Champagne"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inventory: 14,
+    dispatch: "5-8 days",
+    customizable: true,
+  },
+  {
+    id: "trh-008",
+    slug: "colourful-everyday-kurti-edit",
+    name: "Colourful Everyday Kurti Edit",
+    category: "Designer Kurtas",
+    price: 4200,
+    image: "/colourful-kurtis.jpg",
+    gallery: ["/colourful-kurtis.jpg", "/kurtis-collection.jpg"],
+    badge: "Atelier Pick",
+    story: "Easy festive colour for daily wardrobes, office celebrations and gifting.",
+    description: "Curated kurti collection with breathable fabrics, soft finish and inclusive sizing.",
+    fabric: "Cotton, rayon and cotton silk mix",
+    craft: ["Print curation", "Neckline finishing"],
+    colors: ["Assorted"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    inventory: 32,
+    dispatch: "2-4 days",
+    customizable: false,
+  },
+];
+
+export function formatPrice(price: number) {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(price);
+}
+
+export function getProductBySlug(slug: string) {
+  return products.find((product) => product.slug === slug);
+}
+
+export function getFeaturedProducts() {
+  return products.filter((product) => product.bestseller || product.newArrival).slice(0, 4);
+}
