@@ -87,7 +87,7 @@ export default function CraftsmanshipSection() {
 
           <svg
             className="w-full max-w-3xl mx-auto mb-2"
-            viewBox="0 0 820 90"
+            viewBox="0 0 1050 90"
             xmlns="http://www.w3.org/2000/svg"
           >
             <text
@@ -142,9 +142,9 @@ export default function CraftsmanshipSection() {
               <div
                 className="relative p-8 h-full transition-all duration-500 group-hover:-translate-y-2"
                 style={{
-                  background: "rgba(255,255,255,0.6)",
-                  border: "1px solid rgba(201,146,42,0.2)",
-                  outline: "1px solid rgba(201,146,42,0.08)",
+                  background: "rgba(30,22,16,0.9)",
+                  border: "1px solid rgba(201,146,42,0.25)",
+                  outline: "1px solid rgba(201,146,42,0.1)",
                   outlineOffset: "4px",
                   backdropFilter: "blur(4px)",
                 }}
@@ -197,7 +197,7 @@ export default function CraftsmanshipSection() {
                 </h3>
 
                 <p
-                  className="text-taupe leading-relaxed text-sm"
+                  className="text-warm-white/65 leading-relaxed text-sm"
                   style={{ fontFamily: "var(--font-cormorant), serif", fontSize: "1rem" }}
                 >
                   {step.desc}

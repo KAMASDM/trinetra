@@ -33,6 +33,14 @@ function AccountIcon({ active }: { active: boolean }) {
   );
 }
 
+function TrackIcon({ active }: { active: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke={active ? "#E6B400" : "rgba(255,253,248,0.6)"} strokeWidth="1.5">
+      <path d="M3 12h4l2-7 4 14 2-7h6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function MobileBottomNav() {
   const pathname = usePathname();
   const cart = useCart();
@@ -44,8 +52,8 @@ export default function MobileBottomNav() {
   return (
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50">
       <div className="relative border-t border-gold/20 bg-charcoal/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
-        <div className="flex items-stretch justify-between px-1">
-          <Link href="/shop" className="flex flex-1 flex-col items-center justify-center gap-1 py-2.5">
+        <div className="grid grid-cols-5 items-stretch">
+          <Link href="/shop" className="flex flex-col items-center justify-center gap-1 py-2.5">
             <ShopIcon active={isActive("/shop")} />
             <span
               className={`text-[9px] uppercase tracking-[0.15em] ${isActive("/shop") ? "text-gold" : "text-warm-white/60"}`}
@@ -55,7 +63,7 @@ export default function MobileBottomNav() {
             </span>
           </Link>
 
-          <button onClick={cart.openDrawer} className="relative flex flex-1 flex-col items-center justify-center gap-1 py-2.5">
+          <button onClick={cart.openDrawer} className="relative flex flex-col items-center justify-center gap-1 py-2.5">
             <span className="relative">
               <CartIcon active={cart.isDrawerOpen} />
               {cart.count > 0 && (
@@ -73,15 +81,25 @@ export default function MobileBottomNav() {
           </button>
 
           {/* Reserved space for the centered logo button below */}
-          <div className="w-16 flex-shrink-0" aria-hidden />
+          <div aria-hidden />
 
-          <Link href="/account/orders" className="flex flex-1 flex-col items-center justify-center gap-1 py-2.5">
+          <Link href="/account/orders" className="flex flex-col items-center justify-center gap-1 py-2.5">
             <AccountIcon active={isActive("/account")} />
             <span
               className={`text-[9px] uppercase tracking-[0.15em] ${isActive("/account") ? "text-gold" : "text-warm-white/60"}`}
               style={{ fontFamily: "var(--font-jost), sans-serif" }}
             >
               Account
+            </span>
+          </Link>
+
+          <Link href="/track-order" className="flex flex-col items-center justify-center gap-1 py-2.5">
+            <TrackIcon active={isActive("/track-order")} />
+            <span
+              className={`text-[9px] uppercase tracking-[0.15em] ${isActive("/track-order") ? "text-gold" : "text-warm-white/60"}`}
+              style={{ fontFamily: "var(--font-jost), sans-serif" }}
+            >
+              Track
             </span>
           </Link>
         </div>
