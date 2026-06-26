@@ -12,7 +12,7 @@
   --ivory: #FAF6EE;
   --warm-white: #FFFDF8;
   --charcoal: #1E1610;
-  --taupe: #7A6A5A;
+  --taupe: #8B1A1A;
 }
 
 @theme inline {
@@ -25,7 +25,7 @@
   --color-ivory: #FAF6EE;
   --color-warm-white: #FFFDF8;
   --color-charcoal: #1E1610;
-  --color-taupe: #7A6A5A;
+  --color-taupe: #8B1A1A;
 
   /* Typography */
   --font-cinzel: var(--font-cinzel-var), serif;
