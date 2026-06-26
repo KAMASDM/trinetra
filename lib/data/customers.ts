@@ -63,6 +63,40 @@ export async function upsertCustomerFromOrder(order: Order): Promise<void> {
   });
 }
 
+export async function upsertCustomerProfile(params: {
+  uid: string;
+  email: string;
+  name: string;
+  phone?: string;
+}): Promise<void> {
+  const id = customerDocId(params.email);
+  const ref = adminDb.collection(COLLECTION).doc(id);
+  const doc = await ref.get();
+
+  if (!doc.exists) {
+    await ref.set({
+      uid: params.uid,
+      name: params.name,
+      email: params.email,
+      phone: params.phone ?? "",
+      orderIds: [],
+      orderCount: 0,
+      lifetimeValue: 0,
+      lastOrderAt: 0,
+      createdAt: FieldValue.serverTimestamp(),
+      updatedAt: FieldValue.serverTimestamp(),
+    });
+    return;
+  }
+
+  await ref.update({
+    uid: params.uid,
+    name: params.name,
+    ...(params.phone ? { phone: params.phone } : {}),
+    updatedAt: FieldValue.serverTimestamp(),
+  });
+}
+
 export async function getCustomerByUid(uid: string): Promise<Customer | null> {
   const snapshot = await adminDb.collection(COLLECTION).where("uid", "==", uid).limit(1).get();
   if (snapshot.empty) return null;

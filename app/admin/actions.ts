@@ -6,7 +6,8 @@ import { cookies } from "next/headers";
 import { verifySession } from "@/lib/auth/dal";
 import { adminStorage } from "@/lib/firebase-admin";
 import { createProduct, deleteProduct, updateProduct, type ProductInput } from "@/lib/data/products";
-import { updateOrderStatus } from "@/lib/data/orders";
+import { getOrderById, updateOrderStatus } from "@/lib/data/orders";
+import { sendOrderStatusEmail } from "@/lib/email";
 import type { OrderStatus, ProductCategory } from "@/lib/types";
 
 async function requireAdmin() {
@@ -90,6 +91,8 @@ export async function deleteProductAction(id: string) {
   revalidatePath("/shop");
 }
 
+const STATUS_NOTIFY: OrderStatus[] = ["packed", "shipped", "delivered", "cancelled", "returned"];
+
 export async function updateOrderStatusAction(
   orderId: string,
   status: OrderStatus,
@@ -101,6 +104,23 @@ export async function updateOrderStatusAction(
   await updateOrderStatus(orderId, status, note, { trackingNumber, courier });
   revalidatePath(`/admin/orders/${orderId}`);
   revalidatePath("/admin/orders");
+
+  if (STATUS_NOTIFY.includes(status)) {
+    const order = await getOrderById(orderId);
+    if (order) {
+      try {
+        await sendOrderStatusEmail(order.customer.email, {
+          customerName: order.customer.name,
+          orderId: order.id,
+          status,
+          trackingNumber: order.trackingNumber,
+          courier: order.courier,
+        });
+      } catch (error) {
+        console.error("Failed to send order status email", error);
+      }
+    }
+  }
 }
 
 export async function logoutAction() {

@@ -5,6 +5,7 @@ import { FieldValue } from "firebase-admin/firestore";
 import { getOrderById, getOrderByRazorpayOrderId, markOrderPaid, markOrderPaymentFailed } from "@/lib/data/orders";
 import { upsertCustomerFromOrder } from "@/lib/data/customers";
 import { verifyWebhookSignature } from "@/lib/razorpay";
+import { sendOrderConfirmationEmail } from "@/lib/email";
 
 // Durable backstop for /api/checkout/verify — handles the case where the
 // browser closes before the client-side verify call completes.
@@ -47,7 +48,19 @@ export async function POST(request: NextRequest) {
       );
 
       const paidOrder = await getOrderById(order.id);
-      if (paidOrder) await upsertCustomerFromOrder(paidOrder);
+      if (paidOrder) {
+        await upsertCustomerFromOrder(paidOrder);
+        try {
+          await sendOrderConfirmationEmail(paidOrder.customer.email, {
+            customerName: paidOrder.customer.name,
+            orderId: paidOrder.id,
+            items: paidOrder.items,
+            total: paidOrder.total,
+          });
+        } catch (error) {
+          console.error("Failed to send order confirmation email", error);
+        }
+      }
 
       revalidatePath("/shop");
       revalidatePath("/");

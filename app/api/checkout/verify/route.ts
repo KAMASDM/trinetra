@@ -4,6 +4,7 @@ import { adminDb } from "@/lib/firebase-admin";
 import { getOrderById, markOrderPaid } from "@/lib/data/orders";
 import { upsertCustomerFromOrder } from "@/lib/data/customers";
 import { verifyPaymentSignature } from "@/lib/razorpay";
+import { sendOrderConfirmationEmail } from "@/lib/email";
 import { FieldValue } from "firebase-admin/firestore";
 
 type VerifyPayload = {
@@ -52,7 +53,19 @@ export async function POST(request: NextRequest) {
     );
 
     const paidOrder = await getOrderById(payload.orderId);
-    if (paidOrder) await upsertCustomerFromOrder(paidOrder);
+    if (paidOrder) {
+      await upsertCustomerFromOrder(paidOrder);
+      try {
+        await sendOrderConfirmationEmail(paidOrder.customer.email, {
+          customerName: paidOrder.customer.name,
+          orderId: paidOrder.id,
+          items: paidOrder.items,
+          total: paidOrder.total,
+        });
+      } catch (error) {
+        console.error("Failed to send order confirmation email", error);
+      }
+    }
 
     revalidatePath("/shop");
     revalidatePath("/");
