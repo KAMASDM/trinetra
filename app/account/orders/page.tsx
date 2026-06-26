@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { verifyCustomerSession } from "@/lib/auth/customerDal";
 import { listOrdersByUid } from "@/lib/data/orders";
 import { formatPrice } from "@/lib/products";
+import LogoutButton from "@/components/account/LogoutButton";
 
 export const metadata = { title: "My Orders | Trinetra By Rajababu" };
 
@@ -17,8 +18,13 @@ export default async function MyOrdersPage() {
     <section className="min-h-screen linen-bg pt-24 sm:pt-32 pb-16">
       <div className="absolute inset-0 bg-ivory/75" />
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
-        <p className="eyebrow-stitch mb-5">My Account</p>
-        <h1 className="heading-stitched text-3xl sm:text-4xl mb-8">Order History</h1>
+        <div className="flex items-start justify-between gap-4 mb-8">
+          <div>
+            <p className="eyebrow-stitch mb-5">My Account</p>
+            <h1 className="heading-stitched text-3xl sm:text-4xl">Order History</h1>
+          </div>
+          <LogoutButton />
+        </div>
 
         {orders.length === 0 && (
           <div className="border border-gold/20 bg-warm-white/90 p-8 text-center">
