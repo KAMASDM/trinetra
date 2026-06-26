@@ -81,9 +81,9 @@ export default function ConsultationForm() {
 
   if (status === "success") {
     return (
-      <div className="border border-gold/20 bg-warm-white p-8 text-center">
-        <p className="font-cinzel text-2xl text-crimson mb-3">Request Received</p>
-        <p className="text-taupe">
+      <div className="border border-gold/20 bg-warm-white p-6 text-center">
+        <p className="font-cinzel text-xl text-crimson mb-3">Request Received</p>
+        <p className="text-taupe text-sm">
           Thank you — we&rsquo;ve emailed you a confirmation and our team will reach out within 24 hours.
         </p>
       </div>
@@ -91,7 +91,7 @@ export default function ConsultationForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border border-gold/20 bg-warm-white p-6 sm:p-8 space-y-5">
+    <form onSubmit={handleSubmit} className="border border-gold/20 bg-warm-white p-5 space-y-5">
       <label className="block">
         <span className="text-[10px] uppercase tracking-[0.35em] text-taupe">Full Name</span>
         <input required name="name" className="mt-2 w-full border border-gold/25 bg-ivory px-3 py-3 outline-none focus:border-crimson" />

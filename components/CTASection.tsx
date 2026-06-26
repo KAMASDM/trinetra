@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import ConsultationDrawer from "./ConsultationDrawer";
 
 export default function CTASection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [consultationOpen, setConsultationOpen] = useState(false);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -178,13 +179,14 @@ export default function CTASection() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <Link
-              href="/book-consultation"
+            <button
+              type="button"
+              onClick={() => setConsultationOpen(true)}
               className="btn-gold"
               style={{ background: "linear-gradient(135deg, #8B1A1A, #E6B400)" }}
             >
               Book Appointment
-            </Link>
+            </button>
             <a
               href="https://www.instagram.com/trinetrabyrajababu"
               className="btn-outline-gold"
@@ -197,6 +199,7 @@ export default function CTASection() {
           </div>
         </div>
       </div>
+      <ConsultationDrawer open={consultationOpen} onClose={() => setConsultationOpen(false)} />
     </section>
   );
 }
