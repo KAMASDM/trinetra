@@ -77,7 +77,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   ["Custom", product.customizable ? "Available" : "No"],
                 ].map(([label, value]) => (
                   <div key={label} className="border border-gold/20 bg-warm-white/70 p-4">
-                    <p className="text-[9px] uppercase tracking-[0.35em] text-gold">{label}</p>
+                    <p className="text-[9px] uppercase tracking-[0.35em] text-crimson">{label}</p>
                     <p className="mt-2 text-sm text-charcoal">{value}</p>
                   </div>
                 ))}

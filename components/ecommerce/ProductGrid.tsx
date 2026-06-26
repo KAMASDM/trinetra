@@ -86,7 +86,7 @@ function ProductCard({ product }: { product: Product }) {
         </div>
       </Link>
       <div className="p-3 sm:p-5">
-        <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-gold">{product.category}</p>
+        <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-crimson">{product.category}</p>
         <Link href={`/shop/${product.slug}`}>
           <h2 className="mt-1 sm:mt-2 font-cinzel text-sm sm:text-lg text-charcoal">{product.name}</h2>
         </Link>

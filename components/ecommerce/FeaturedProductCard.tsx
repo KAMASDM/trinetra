@@ -31,7 +31,7 @@ export default function FeaturedProductCard({ product }: { product: Product }) {
         </div>
       </Link>
       <div className="p-5">
-        <p className="text-[9px] uppercase tracking-[0.35em] text-gold">{product.category}</p>
+        <p className="text-[9px] uppercase tracking-[0.35em] text-crimson">{product.category}</p>
         <Link href={`/shop/${product.slug}`}>
           <h3 className="mt-2 font-cinzel text-base text-charcoal">{product.name}</h3>
         </Link>
