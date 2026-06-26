@@ -197,3 +197,66 @@ export function orderStatusEmail(params: {
     }),
   };
 }
+
+export type ConsultationRequest = {
+  name: string;
+  email: string;
+  phone: string;
+  consultationType: string;
+  notes?: string;
+};
+
+function consultationDetailsTable(params: ConsultationRequest): string {
+  const rows: [string, string][] = [
+    ["Name", params.name],
+    ["Email", params.email],
+    ["Phone", params.phone],
+    ["Consultation Type", params.consultationType],
+    ["Notes", params.notes || "—"],
+  ];
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    ${rows
+      .map(
+        ([label, value]) => `
+      <tr>
+        <td style="padding:8px 0;border-bottom:1px solid rgba(201,146,42,0.15);font-size:11px;text-transform:uppercase;letter-spacing:1px;color:${COLORS.taupe};width:140px;vertical-align:top;">${label}</td>
+        <td style="padding:8px 0;border-bottom:1px solid rgba(201,146,42,0.15);font-size:14px;">${value}</td>
+      </tr>`,
+      )
+      .join("")}
+  </table>`;
+}
+
+export function consultationAdminEmail(params: ConsultationRequest): { subject: string; html: string } {
+  return {
+    subject: `New Consultation Request — ${params.name}`,
+    html: layout({
+      preheader: `New ${params.consultationType} request from ${params.name}`,
+      bodyHtml: `
+        ${heading("New Consultation Request")}
+        <p>A new consultation has been requested through the website.</p>
+        ${divider()}
+        ${consultationDetailsTable(params)}
+      `,
+    }),
+  };
+}
+
+export function consultationConfirmationEmail(params: ConsultationRequest): { subject: string; html: string } {
+  return {
+    subject: "We've Received Your Consultation Request",
+    html: layout({
+      preheader: "Our team will reach out to you shortly",
+      bodyHtml: `
+        ${heading(`Thank You, ${params.name.split(" ")[0]}`)}
+        <p>We've received your request for a <strong>${params.consultationType}</strong> consultation. Our team will reach out to you within 24 hours to confirm a time that works for you.</p>
+        ${divider()}
+        <p style="font-size:13px;color:${COLORS.taupe};text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Your Request</p>
+        ${consultationDetailsTable(params)}
+        <div style="text-align:center;margin-top:28px;">
+          ${button("https://trinetrastudio.in/shop", "Browse The Atelier")}
+        </div>
+      `,
+    }),
+  };
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export default function CTASection() {
@@ -177,16 +178,17 @@ export default function CTASection() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <a
-              href="tel:+919825893059"
+            <Link
+              href="/book-consultation"
               className="btn-gold"
               style={{ background: "linear-gradient(135deg, #8B1A1A, #E6B400)" }}
             >
               Book Appointment
-            </a>
+            </Link>
             <a
               href="https://www.instagram.com/trinetrabyrajababu"
               className="btn-outline-gold"
+              style={{ color: "var(--crimson)", borderColor: "rgba(139,26,26,0.4)" }}
               target="_blank"
               rel="noopener noreferrer"
             >
