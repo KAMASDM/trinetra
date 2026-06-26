@@ -35,7 +35,7 @@ export default function Footer() {
         className="h-px w-full"
         style={{
           background:
-            "linear-gradient(90deg, transparent, #C9922A, #E4B84A, #C9922A, transparent)",
+            "linear-gradient(90deg, transparent, #E6B400, #F7D154, #E6B400, transparent)",
         }}
       />
 
@@ -79,7 +79,7 @@ export default function Footer() {
                     fontWeight="700"
                     letterSpacing="4"
                     fill="none"
-                    stroke="#C9922A"
+                    stroke="#E6B400"
                     strokeWidth="0.7"
                     strokeDasharray="3 1.5"
                     strokeLinecap="round"
@@ -152,7 +152,7 @@ export default function Footer() {
                   fontWeight="600"
                   letterSpacing="4"
                   fill="none"
-                  stroke="#C9922A"
+                  stroke="#E6B400"
                   strokeWidth="0.7"
                   strokeDasharray="3 1.5"
                   strokeLinecap="round"
@@ -202,7 +202,7 @@ export default function Footer() {
               fontStyle="italic"
               letterSpacing="4"
               fill="none"
-              stroke="#C9922A"
+              stroke="#E6B400"
               strokeWidth="0.5"
               strokeDasharray="2 1"
             >
@@ -217,7 +217,7 @@ export default function Footer() {
         className="h-0.5 w-full"
         style={{
           background:
-            "repeating-linear-gradient(90deg, #C9922A 0px, #C9922A 5px, transparent 5px, transparent 10px)",
+            "repeating-linear-gradient(90deg, #E6B400 0px, #E6B400 5px, transparent 5px, transparent 10px)",
           opacity: 0.15,
         }}
       />

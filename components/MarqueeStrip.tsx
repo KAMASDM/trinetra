@@ -42,13 +42,13 @@ export default function MarqueeStrip() {
             className="flex items-center gap-4 mx-3"
             style={{ fontFamily: "var(--font-jost), sans-serif" }}
           >
-            <span className="text-gold/80 text-[10px] tracking-[0.4em] uppercase font-light">
+            <span className="text-white/90 text-[10px] tracking-[0.4em] uppercase font-light">
               {item}
             </span>
             {/* Cross-stitch separator */}
             <svg width="8" height="8" viewBox="0 0 8 8" className="flex-shrink-0">
-              <line x1="0" y1="0" x2="8" y2="8" stroke="#C9922A" strokeWidth="1" opacity="0.5" />
-              <line x1="8" y1="0" x2="0" y2="8" stroke="#C9922A" strokeWidth="1" opacity="0.5" />
+              <line x1="0" y1="0" x2="8" y2="8" stroke="#E6B400" strokeWidth="1" opacity="0.5" />
+              <line x1="8" y1="0" x2="0" y2="8" stroke="#E6B400" strokeWidth="1" opacity="0.5" />
             </svg>
           </span>
         ))}

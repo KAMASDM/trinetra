@@ -14,12 +14,12 @@ function MandalaDecor() {
     <svg
       viewBox="0 0 300 300"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-full max-w-sm mx-auto opacity-70 animate-rotate-slow"
+      className="absolute inset-0 w-full h-full opacity-70 animate-rotate-slow"
       style={{ transformOrigin: "center" }}
     >
       {/* Outer decorative ring */}
-      <circle cx="150" cy="150" r="140" fill="none" stroke="#C9922A" strokeWidth="0.5" strokeDasharray="4 3" />
-      <circle cx="150" cy="150" r="120" fill="none" stroke="#C9922A" strokeWidth="0.3" />
+      <circle cx="150" cy="150" r="140" fill="none" stroke="#E6B400" strokeWidth="0.5" strokeDasharray="4 3" />
+      <circle cx="150" cy="150" r="120" fill="none" stroke="#E6B400" strokeWidth="0.3" />
 
       {/* 8-petal flower */}
       {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
@@ -27,7 +27,7 @@ function MandalaDecor() {
           <path
             d="M150 30 C160 80 195 85 195 150 C195 85 230 80 150 30Z"
             fill="none"
-            stroke="#C9922A"
+            stroke="#E6B400"
             strokeWidth="0.8"
             strokeDasharray="3 2"
             opacity="0.6"
@@ -36,20 +36,20 @@ function MandalaDecor() {
       ))}
 
       {/* Inner circles */}
-      <circle cx="150" cy="150" r="70" fill="none" stroke="#C9922A" strokeWidth="0.4" strokeDasharray="3 2" />
-      <circle cx="150" cy="150" r="40" fill="none" stroke="#C9922A" strokeWidth="0.6" />
-      <circle cx="150" cy="150" r="15" fill="none" stroke="#C9922A" strokeWidth="1" />
+      <circle cx="150" cy="150" r="70" fill="none" stroke="#E6B400" strokeWidth="0.4" strokeDasharray="3 2" />
+      <circle cx="150" cy="150" r="40" fill="none" stroke="#E6B400" strokeWidth="0.6" />
+      <circle cx="150" cy="150" r="15" fill="none" stroke="#E6B400" strokeWidth="1" />
 
       {/* Cardinal dots */}
       {[0, 90, 180, 270].map((angle) => {
         const rad = (angle * Math.PI) / 180;
         const x = 150 + 70 * Math.sin(rad);
         const y = 150 - 70 * Math.cos(rad);
-        return <circle key={angle} cx={x} cy={y} r="3" fill="#C9922A" opacity="0.7" />;
+        return <circle key={angle} cx={x} cy={y} r="3" fill="#E6B400" opacity="0.7" />;
       })}
 
       {/* Centre diamond */}
-      <rect x="143" y="143" width="14" height="14" fill="#C9922A" opacity="0.5" transform="rotate(45 150 150)" />
+      <rect x="143" y="143" width="14" height="14" fill="#E6B400" opacity="0.5" transform="rotate(45 150 150)" />
 
       {/* 16-point fine details */}
       {Array.from({ length: 16 }).map((_, i) => {
@@ -66,7 +66,7 @@ function MandalaDecor() {
             y1={y1}
             x2={x2}
             y2={y2}
-            stroke="#C9922A"
+            stroke="#E6B400"
             strokeWidth="0.8"
             opacity="0.4"
           />
@@ -113,7 +113,7 @@ export default function HeritageSection() {
 
           {/* ── LEFT: Text ── */}
           <div className="reveal">
-            <p className="eyebrow-stitch mb-6" style={{ color: "#E4B84A" }}>
+            <p className="eyebrow-stitch mb-6" style={{ color: "#F7D154" }}>
               Our Story
             </p>
 
@@ -199,40 +199,51 @@ export default function HeritageSection() {
           </div>
 
           {/* ── RIGHT: Mandala ── */}
-          <div className="reveal relative flex items-center justify-center">
-            {/* Background glow */}
-            <div
-              className="absolute inset-0 rounded-full pointer-events-none"
-              style={{
-                background: "radial-gradient(circle, rgba(201,146,42,0.06) 0%, transparent 70%)",
-              }}
-            />
+          <div className="reveal relative flex items-center justify-center pb-12 sm:pb-16">
+            <div className="relative w-full max-w-sm aspect-square">
+              {/* Background glow */}
+              <div
+                className="absolute inset-0 rounded-full pointer-events-none"
+                style={{
+                  background: "radial-gradient(circle, rgba(201,146,42,0.06) 0%, transparent 70%)",
+                }}
+              />
 
-            {/* Decorative rings (static) */}
-            <svg
-              className="absolute w-[110%] opacity-10"
-              viewBox="0 0 330 330"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="165" cy="165" r="160" fill="none" stroke="#C9922A" strokeWidth="1" strokeDasharray="6 4" />
-            </svg>
-
-            <MandalaDecor />
-
-            {/* Centre quote card */}
-            <div
-              className="absolute inset-8 sm:inset-14 flex flex-col items-center justify-center text-center rounded-full"
-              style={{ background: "radial-gradient(circle, rgba(30,22,16,0.8) 0%, transparent 100%)" }}
-            >
-              <svg width="30" height="20" viewBox="0 0 30 20" className="mb-3 opacity-60">
-                <text fontSize="28" y="18" fontFamily="serif" fill="#C9922A">&ldquo;</text>
-              </svg>
-              <p
-                className="text-gold-pale/80 text-xs leading-relaxed px-4"
-                style={{ fontFamily: "var(--font-cormorant), serif", fontStyle: "italic" }}
+              {/* Decorative rings (static) */}
+              <svg
+                className="absolute inset-0 w-full h-full opacity-10"
+                viewBox="0 0 330 330"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Every stitch is a prayer, every thread a blessing
-              </p>
+                <circle cx="165" cy="165" r="160" fill="none" stroke="#E6B400" strokeWidth="1" strokeDasharray="6 4" />
+              </svg>
+
+              <MandalaDecor />
+
+              {/* Centre quote card */}
+              <div
+                className="absolute inset-8 sm:inset-14 flex flex-col items-center justify-center text-center rounded-full"
+                style={{ background: "radial-gradient(circle, rgba(30,22,16,0.8) 0%, transparent 100%)" }}
+              >
+                <svg width="30" height="20" viewBox="0 0 30 20" className="opacity-60">
+                  <text fontSize="28" y="18" fontFamily="serif" fill="#E6B400">&ldquo;</text>
+                </svg>
+              </div>
+
+              {/* Quote, curved along the circle's underside */}
+              <svg
+                className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-1/3 w-[112%]"
+                viewBox="0 0 300 70"
+                style={{ overflow: "visible" }}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path id="heritageQuoteArc" d="M 0 18 A 300 300 0 0 0 300 18" fill="none" />
+                <text fontSize="12.5" letterSpacing="0.5" fill="var(--gold-light)" fillOpacity="0.85" fontStyle="italic" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                  <textPath href="#heritageQuoteArc" startOffset="50%" textAnchor="middle">
+                    Every stitch is a prayer, every thread a blessing
+                  </textPath>
+                </text>
+              </svg>
             </div>
           </div>
         </div>

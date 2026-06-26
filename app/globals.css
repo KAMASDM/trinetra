@@ -6,8 +6,8 @@
 :root {
   --crimson: #8B1A1A;
   --deep-crimson: #5C0E0E;
-  --gold: #C9922A;
-  --gold-light: #E4B84A;
+  --gold: #E6B400;
+  --gold-light: #F7D154;
   --gold-pale: #F5E6C0;
   --ivory: #FAF6EE;
   --warm-white: #FFFDF8;
@@ -19,8 +19,8 @@
   /* Brand colors */
   --color-crimson: #8B1A1A;
   --color-deep-crimson: #5C0E0E;
-  --color-gold: #C9922A;
-  --color-gold-light: #E4B84A;
+  --color-gold: #E6B400;
+  --color-gold-light: #F7D154;
   --color-gold-pale: #F5E6C0;
   --color-ivory: #FAF6EE;
   --color-warm-white: #FFFDF8;

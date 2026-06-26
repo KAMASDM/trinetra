@@ -59,7 +59,7 @@ export default function BridalSection() {
       {/* Top diagonal decorative band */}
       <div
         className="absolute top-0 left-0 right-0 h-1 pointer-events-none"
-        style={{ background: "linear-gradient(90deg, transparent, #C9922A, #E4B84A, #C9922A, transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, #E6B400, #F7D154, #E6B400, transparent)" }}
       />
 
       {/* Scattered gold petals */}
@@ -78,7 +78,7 @@ export default function BridalSection() {
         >
           {[0, 45, 90, 135, 180, 225, 270, 315].map((a) => (
             <g key={a} transform={`rotate(${a} 25 25)`}>
-              <path d="M25 5 C29 15 40 15 40 25 C40 15 51 15 25 5Z" fill="#C9922A" />
+              <path d="M25 5 C29 15 40 15 40 25 C40 15 51 15 25 5Z" fill="#E6B400" />
             </g>
           ))}
         </svg>
@@ -87,7 +87,7 @@ export default function BridalSection() {
       <div className="relative max-w-6xl mx-auto px-6 text-center">
 
         {/* Eyebrow */}
-        <p className="eyebrow-stitch mb-6 reveal" style={{ color: "#E4B84A" }}>
+        <p className="eyebrow-stitch mb-6 reveal" style={{ color: "#F7D154" }}>
           For the Most Important Day
         </p>
 
@@ -119,7 +119,7 @@ export default function BridalSection() {
             fontWeight="700"
             letterSpacing="10"
             fill="none"
-            stroke="#E4B84A"
+            stroke="#F7D154"
             strokeWidth="1.3"
             strokeDasharray="5 2.5"
             strokeLinecap="round"
@@ -157,7 +157,7 @@ export default function BridalSection() {
             fontStyle="italic"
             letterSpacing="10"
             fill="none"
-            stroke="#C9922A"
+            stroke="#E6B400"
             strokeWidth="0.9"
             strokeDasharray="4 2"
             strokeLinecap="round"
@@ -218,7 +218,7 @@ export default function BridalSection() {
                   viewBox="0 0 20 20"
                   style={{ transform: `rotate(${pos === "tl" ? 0 : pos === "tr" ? 90 : pos === "bl" ? 270 : 180}deg)` }}
                 >
-                  <path d="M2 18 L2 2 L18 2" fill="none" stroke="#C9922A" strokeWidth="1" strokeOpacity="0.5" />
+                  <path d="M2 18 L2 2 L18 2" fill="none" stroke="#E6B400" strokeWidth="1" strokeOpacity="0.5" />
                 </svg>
               </div>
             ))}
@@ -250,7 +250,7 @@ export default function BridalSection() {
                 <path
                   d="M2 18 L2 2 L18 2"
                   fill="none"
-                  stroke="#C9922A"
+                  stroke="#E6B400"
                   strokeWidth="1"
                 />
               </svg>
@@ -278,7 +278,7 @@ export default function BridalSection() {
                   fontWeight="600"
                   letterSpacing="3"
                   fill="none"
-                  stroke="#E4B84A"
+                  stroke="#F7D154"
                   strokeWidth="0.8"
                   strokeDasharray="4 2"
                   strokeLinecap="round"
@@ -318,7 +318,7 @@ export default function BridalSection() {
 
       <div
         className="absolute bottom-0 left-0 right-0 h-1 pointer-events-none"
-        style={{ background: "linear-gradient(90deg, transparent, #C9922A, #E4B84A, #C9922A, transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, #E6B400, #F7D154, #E6B400, transparent)" }}
       />
     </section>
   );

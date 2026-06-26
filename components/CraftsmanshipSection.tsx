@@ -10,9 +10,9 @@ const steps = [
     desc: "Our master designers sit with you and translate your vision into sketches, colour palettes and fabric suggestions — crafting a bespoke blueprint just for you.",
     icon: (
       <svg viewBox="0 0 40 40" className="w-8 h-8">
-        <path d="M8 32 L8 16 L20 4 L32 16 L32 32 Z" fill="none" stroke="#C9922A" strokeWidth="1.5" strokeDasharray="3 1.5" strokeLinecap="round" />
-        <circle cx="20" cy="14" r="4" fill="none" stroke="#C9922A" strokeWidth="1" />
-        <path d="M14 32 L14 24 L26 24 L26 32" fill="none" stroke="#C9922A" strokeWidth="1" />
+        <path d="M8 32 L8 16 L20 4 L32 16 L32 32 Z" fill="none" stroke="#E6B400" strokeWidth="1.5" strokeDasharray="3 1.5" strokeLinecap="round" />
+        <circle cx="20" cy="14" r="4" fill="none" stroke="#E6B400" strokeWidth="1" />
+        <path d="M14 32 L14 24 L26 24 L26 32" fill="none" stroke="#E6B400" strokeWidth="1" />
       </svg>
     ),
   },
@@ -22,9 +22,9 @@ const steps = [
     desc: "Curated from the finest mills of Varanasi, Kanchipuram and Chandigarh — every fabric is hand-selected for texture, drape and dye-fastness.",
     icon: (
       <svg viewBox="0 0 40 40" className="w-8 h-8">
-        <path d="M4 20 Q20 4 36 20 Q20 36 4 20Z" fill="none" stroke="#C9922A" strokeWidth="1.5" strokeDasharray="3 1.5" strokeLinecap="round" />
-        <path d="M4 20 Q20 12 36 20" fill="none" stroke="#C9922A" strokeWidth="0.8" strokeDasharray="2 1" />
-        <circle cx="20" cy="20" r="3" fill="#C9922A" opacity="0.5" />
+        <path d="M4 20 Q20 4 36 20 Q20 36 4 20Z" fill="none" stroke="#E6B400" strokeWidth="1.5" strokeDasharray="3 1.5" strokeLinecap="round" />
+        <path d="M4 20 Q20 12 36 20" fill="none" stroke="#E6B400" strokeWidth="0.8" strokeDasharray="2 1" />
+        <circle cx="20" cy="20" r="3" fill="#E6B400" opacity="0.5" />
       </svg>
     ),
   },
@@ -35,12 +35,12 @@ const steps = [
     icon: (
       <svg viewBox="0 0 40 40" className="w-8 h-8">
         {/* Needle and thread */}
-        <path d="M8 8 L30 30" fill="none" stroke="#C9922A" strokeWidth="1.8" strokeLinecap="round" strokeDasharray="3 1.5" />
-        <circle cx="8" cy="8" r="3" fill="none" stroke="#C9922A" strokeWidth="1" />
-        <path d="M7 7 L9 9" fill="none" stroke="#C9922A" strokeWidth="0.8" />
-        <path d="M32 32 Q38 26 34 20 Q40 22 36 30Z" fill="#C9922A" opacity="0.5" />
+        <path d="M8 8 L30 30" fill="none" stroke="#E6B400" strokeWidth="1.8" strokeLinecap="round" strokeDasharray="3 1.5" />
+        <circle cx="8" cy="8" r="3" fill="none" stroke="#E6B400" strokeWidth="1" />
+        <path d="M7 7 L9 9" fill="none" stroke="#E6B400" strokeWidth="0.8" />
+        <path d="M32 32 Q38 26 34 20 Q40 22 36 30Z" fill="#E6B400" opacity="0.5" />
         {/* Thread loops */}
-        <path d="M14 18 Q18 12 22 16 Q18 20 14 18Z" fill="none" stroke="#C9922A" strokeWidth="0.7" />
+        <path d="M14 18 Q18 12 22 16 Q18 20 14 18Z" fill="none" stroke="#E6B400" strokeWidth="0.7" />
       </svg>
     ),
   },
@@ -50,10 +50,10 @@ const steps = [
     desc: "Three rounds of fitting sessions ensure the garment sits flawlessly on your silhouette. We alter until perfection — because every inch matters.",
     icon: (
       <svg viewBox="0 0 40 40" className="w-8 h-8">
-        <path d="M10 6 L30 6 L32 16 L28 16 L28 36 L12 36 L12 16 L8 16 Z" fill="none" stroke="#C9922A" strokeWidth="1.5" strokeDasharray="3 1.5" strokeLinecap="round" />
-        <path d="M14 20 L26 20 M14 25 L26 25 M14 30 L22 30" fill="none" stroke="#C9922A" strokeWidth="0.8" opacity="0.5" />
+        <path d="M10 6 L30 6 L32 16 L28 16 L28 36 L12 36 L12 16 L8 16 Z" fill="none" stroke="#E6B400" strokeWidth="1.5" strokeDasharray="3 1.5" strokeLinecap="round" />
+        <path d="M14 20 L26 20 M14 25 L26 25 M14 30 L22 30" fill="none" stroke="#E6B400" strokeWidth="0.8" opacity="0.5" />
         {/* Check mark */}
-        <path d="M16 12 L19 15 L24 9" fill="none" stroke="#E4B84A" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M16 12 L19 15 L24 9" fill="none" stroke="#F7D154" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -132,7 +132,7 @@ export default function CraftsmanshipSection() {
                 <div
                   className="absolute top-8 left-full w-8 h-px hidden lg:block z-10"
                   style={{
-                    background: "repeating-linear-gradient(90deg, #C9922A 0px, #C9922A 4px, transparent 4px, transparent 8px)",
+                    background: "repeating-linear-gradient(90deg, #E6B400 0px, #E6B400 4px, transparent 4px, transparent 8px)",
                     opacity: 0.4,
                   }}
                 />
@@ -172,7 +172,7 @@ export default function CraftsmanshipSection() {
                     fontSize="38"
                     fontWeight="700"
                     fill="none"
-                    stroke="#C9922A"
+                    stroke="#E6B400"
                     strokeWidth="0.9"
                     strokeDasharray="4 2"
                     strokeLinecap="round"
@@ -211,7 +211,7 @@ export default function CraftsmanshipSection() {
         <div className="mt-20 reveal">
           <p
             className="text-center eyebrow-stitch mb-8"
-            style={{ color: "#C9922A", opacity: 0.7, fontSize: "0.65rem" }}
+            style={{ color: "#E6B400", opacity: 0.7, fontSize: "0.65rem" }}
           >
             Our Masterwork
           </p>

@@ -29,7 +29,7 @@ export default function CTASection() {
         style={{ width: "60vw", maxWidth: "600px" }}
       >
         <circle cx="250" cy="250" r="240" fill="none" stroke="#8B1A1A" strokeWidth="1" strokeDasharray="6 4" />
-        <circle cx="250" cy="250" r="200" fill="none" stroke="#C9922A" strokeWidth="1" strokeDasharray="4 3" />
+        <circle cx="250" cy="250" r="200" fill="none" stroke="#E6B400" strokeWidth="1" strokeDasharray="4 3" />
         <circle cx="250" cy="250" r="160" fill="none" stroke="#8B1A1A" strokeWidth="0.5" />
       </svg>
 
@@ -180,7 +180,7 @@ export default function CTASection() {
             <a
               href="tel:+919876543210"
               className="btn-gold"
-              style={{ background: "linear-gradient(135deg, #8B1A1A, #C9922A)" }}
+              style={{ background: "linear-gradient(135deg, #8B1A1A, #E6B400)" }}
             >
               Book Appointment
             </a>

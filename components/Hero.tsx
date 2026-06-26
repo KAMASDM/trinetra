@@ -19,11 +19,11 @@ function FloatingPetal({ x, y, delay, size }: { x: string; y: string; delay: num
         <path
           d="M20 2 C24 10 38 10 38 20 C38 30 24 30 20 38 C16 30 2 30 2 20 C2 10 16 10 20 2Z"
           fill="none"
-          stroke="#C9922A"
+          stroke="#FFFFFF"
           strokeWidth="0.8"
           strokeDasharray="3 2"
         />
-        <circle cx="20" cy="20" r="3" fill="#C9922A" opacity="0.4" />
+        <circle cx="20" cy="20" r="3" fill="#FFFFFF" opacity="0.4" />
       </svg>
     </div>
   );
@@ -50,14 +50,14 @@ function CornerOrnament({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
         <path
           d="M2 78 L2 2 L78 2"
           fill="none"
-          stroke="#C9922A"
+          stroke="#FFFFFF"
           strokeWidth="1"
           strokeDasharray="2000"
           strokeDashoffset="0"
           opacity="0.5"
         />
         {/* Small diamond accent */}
-        <rect x="0" y="0" width="5" height="5" fill="#C9922A" opacity="0.6" transform="rotate(45 2.5 2.5)" />
+        <rect x="0" y="0" width="5" height="5" fill="#FFFFFF" opacity="0.6" transform="rotate(45 2.5 2.5)" />
       </svg>
     </div>
   );
@@ -229,12 +229,12 @@ export default function Hero() {
 
         {/* Tagline */}
         <p
-          className="text-gold-pale/80 text-sm md:text-base tracking-[0.2em] max-w-xl mx-auto leading-relaxed animate-fade-in-up"
+          className="text-gold-pale/80 whitespace-nowrap tracking-[0.1em] sm:tracking-[0.2em] max-w-xl mx-auto leading-relaxed animate-fade-in-up"
           style={{
             fontFamily: "var(--font-cormorant), serif",
             animationDelay: "2s",
             opacity: 0,
-            fontSize: "1.05rem",
+            fontSize: "clamp(0.6rem, 3.1vw, 1.05rem)",
           }}
         >
           Where India&rsquo;s richest traditions are woven into every thread
@@ -259,12 +259,12 @@ export default function Hero() {
           style={{ animationDelay: "3s", opacity: 0 }}
         >
           <p
-            className="text-gold/50 text-[9px] tracking-[0.5em] uppercase"
+            className="text-white/80 text-xs tracking-[0.5em] uppercase"
             style={{ fontFamily: "var(--font-jost), sans-serif" }}
           >
             Scroll to discover
           </p>
-          <div className="w-px h-12 bg-gradient-to-b from-gold/40 to-transparent animate-pulse-gold" />
+          <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent animate-pulse-gold" />
         </div>
       </div>
     </section>

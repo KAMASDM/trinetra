@@ -32,30 +32,24 @@ export default function Navbar() {
           : "bg-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <div className="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <Image
             src="/logo.png"
             alt="Trinetra Logo"
-            width={40}
-            height={40}
-            className="w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0"
+            width={52}
+            height={52}
+            className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0"
             style={{ objectFit: "contain" }}
           />
 
           <div className="hidden sm:block">
             <p
-              className="text-gold font-cinzel text-sm font-semibold tracking-[0.2em] uppercase leading-none"
+              className="text-white font-cinzel text-sm font-semibold tracking-[0.2em] uppercase leading-none"
               style={{ fontFamily: "var(--font-cinzel), serif" }}
             >
               Trinetra
-            </p>
-            <p
-              className="text-gold/60 text-[9px] tracking-[0.35em] uppercase leading-none mt-1"
-              style={{ fontFamily: "var(--font-jost), sans-serif" }}
-            >
-              By Rajababu
             </p>
           </div>
         </Link>
@@ -89,10 +83,10 @@ export default function Navbar() {
         {/* Mobile: cart + hamburger (Account/Cart core actions live in the bottom nav) */}
         <div className="flex items-center gap-3 lg:hidden">
           <button onClick={cart.openDrawer} className="relative p-2" aria-label="Open cart">
-            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="#C9922A" strokeWidth="1.5">
+            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="#E6B400" strokeWidth="1.5">
               <path d="M3 6h2l1.6 9.6a2 2 0 0 0 2 1.7h8.8a2 2 0 0 0 2-1.6L21 9H6" strokeLinecap="round" strokeLinejoin="round" />
-              <circle cx="9" cy="20" r="1.4" fill="#C9922A" stroke="none" />
-              <circle cx="17" cy="20" r="1.4" fill="#C9922A" stroke="none" />
+              <circle cx="9" cy="20" r="1.4" fill="#E6B400" stroke="none" />
+              <circle cx="17" cy="20" r="1.4" fill="#E6B400" stroke="none" />
             </svg>
             {cart.count > 0 && (
               <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-crimson px-1 text-[9px] text-warm-white">

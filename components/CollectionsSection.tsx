@@ -11,7 +11,7 @@ const collections = [
     description:
       "Handcrafted with real zardozi, intricate gota patti and Swarovski work. Every bridal lehenga is a masterpiece woven from generations of artisanship.",
     gradient: "linear-gradient(160deg, rgba(92,14,14,0.72) 0%, rgba(139,26,26,0.65) 50%, rgba(168,32,32,0.60) 100%)",
-    accentColor: "#E4B84A",
+    accentColor: "#F7D154",
     pattern: "bridal",
     image: "/bridal-lehenga.jpg",
   },
@@ -33,7 +33,7 @@ const collections = [
     description:
       "Phulkari embroidery, mirror work and hand-blocked prints meet contemporary silhouettes in our celebrated suit collections.",
     gradient: "linear-gradient(160deg, rgba(13,51,72,0.70) 0%, rgba(26,82,118,0.65) 50%, rgba(40,116,166,0.60) 100%)",
-    accentColor: "#E4B84A",
+    accentColor: "#F7D154",
     pattern: "suit",
     image: "/white-sharara-set.jpg",
   },
@@ -44,7 +44,7 @@ const collections = [
     description:
       "Vibrant mirror-work, bandhani prints and intricate threadwork chaniya cholis that make every garba a celebration.",
     gradient: "linear-gradient(160deg, rgba(26,58,26,0.70) 0%, rgba(46,125,50,0.65) 50%, rgba(56,142,60,0.60) 100%)",
-    accentColor: "#E4B84A",
+    accentColor: "#F7D154",
     pattern: "chaniya",
     image: "/pink-palazzo-suit.jpg",
   },
@@ -66,7 +66,7 @@ const collections = [
     description:
       "From deep-neck heavily embellished pieces to classic mango designs — our master blouse craftsmen ensure perfection.",
     gradient: "linear-gradient(160deg, rgba(26,48,64,0.72) 0%, rgba(44,80,106,0.65) 50%, rgba(61,107,140,0.60) 100%)",
-    accentColor: "#E4B84A",
+    accentColor: "#F7D154",
     pattern: "blouse",
     image: "/brocade-blouse-front.jpg",
   },

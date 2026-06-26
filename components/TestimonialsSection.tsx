@@ -36,8 +36,8 @@ function StarRating({ count }: { count: number }) {
         <svg key={i} width="14" height="14" viewBox="0 0 14 14">
           <polygon
             points="7,1 8.5,5.5 13,5.5 9.5,8.5 10.8,13 7,10 3.2,13 4.5,8.5 1,5.5 5.5,5.5"
-            fill={i < count ? "#C9922A" : "none"}
-            stroke="#C9922A"
+            fill={i < count ? "#E6B400" : "none"}
+            stroke="#E6B400"
             strokeWidth="0.6"
           />
         </svg>
@@ -87,7 +87,7 @@ export default function TestimonialsSection() {
           fontFamily="Cinzel, serif"
           fontSize="120"
           fontWeight="700"
-          fill="#C9922A"
+          fill="#E6B400"
         >
           VOICES
         </text>
@@ -97,7 +97,7 @@ export default function TestimonialsSection() {
 
         {/* Header */}
         <div className="text-center mb-16 reveal">
-          <p className="eyebrow-stitch mb-4" style={{ color: "#E4B84A" }}>
+          <p className="eyebrow-stitch mb-4" style={{ color: "#F7D154" }}>
             What Our Patrons Say
           </p>
 
@@ -127,7 +127,7 @@ export default function TestimonialsSection() {
               fontWeight="700"
               letterSpacing="10"
               fill="none"
-              stroke="#E4B84A"
+              stroke="#F7D154"
               strokeWidth="1.1"
               strokeDasharray="5 2.5"
               strokeLinecap="round"
@@ -154,15 +154,15 @@ export default function TestimonialsSection() {
             >
               {/* Thread border corners */}
               <svg className="absolute top-0 left-0 w-10 h-10 opacity-40" viewBox="0 0 40 40">
-                <path d="M2 38 L2 2 L38 2" fill="none" stroke="#C9922A" strokeWidth="1" strokeDasharray="3 2" />
+                <path d="M2 38 L2 2 L38 2" fill="none" stroke="#E6B400" strokeWidth="1" strokeDasharray="3 2" />
               </svg>
               <svg className="absolute bottom-0 right-0 w-10 h-10 opacity-40" viewBox="0 0 40 40">
-                <path d="M38 2 L38 38 L2 38" fill="none" stroke="#C9922A" strokeWidth="1" strokeDasharray="3 2" />
+                <path d="M38 2 L38 38 L2 38" fill="none" stroke="#E6B400" strokeWidth="1" strokeDasharray="3 2" />
               </svg>
 
               {/* Large decorative quote mark */}
               <svg className="w-10 h-8 mb-5 opacity-25" viewBox="0 0 50 35">
-                <text y="100%" fontFamily="Georgia, serif" fontSize="52" fill="#C9922A">&ldquo;</text>
+                <text y="100%" fontFamily="Georgia, serif" fontSize="52" fill="#E6B400">&ldquo;</text>
               </svg>
 
               {/* Stars */}
