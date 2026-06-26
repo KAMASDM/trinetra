@@ -29,13 +29,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <main>
       <Navbar />
-      <section className="linen-bg relative pt-28 pb-16">
+      <section className="linen-bg relative pt-24 sm:pt-28 pb-16">
         <div className="absolute inset-0 bg-ivory/75" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <Link href="/shop" className="text-[11px] uppercase tracking-[0.3em] text-crimson">Back to shop</Link>
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_460px]">
+          <div className="mt-6 sm:mt-8 grid gap-6 sm:gap-10 lg:grid-cols-[1fr_460px]">
             <div>
-              <div className="relative h-[620px] overflow-hidden border border-gold/25 bg-charcoal">
+              <div className="relative aspect-[4/5] sm:h-[620px] sm:aspect-auto overflow-hidden border border-gold/25 bg-charcoal">
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -45,9 +45,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   priority
                 />
               </div>
-              <div className="mt-4 grid grid-cols-3 gap-3">
+              <div className="mt-3 sm:mt-4 grid grid-cols-3 gap-2 sm:gap-3">
                 {product.gallery.map((image) => (
-                  <div key={image} className="relative h-36 overflow-hidden border border-gold/20">
+                  <div key={image} className="relative h-24 sm:h-36 overflow-hidden border border-gold/20">
                     <Image
                       src={image}
                       alt=""

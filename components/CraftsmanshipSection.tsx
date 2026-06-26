@@ -75,7 +75,7 @@ export default function CraftsmanshipSection() {
     <section
       id="craftsmanship"
       ref={sectionRef}
-      className="relative py-24 linen-bg"
+      className="relative py-16 sm:py-24 linen-bg"
     >
       <div className="absolute inset-0 bg-ivory/75 pointer-events-none" />
 

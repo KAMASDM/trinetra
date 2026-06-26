@@ -10,10 +10,10 @@ export default function CartView() {
 
   if (!cart.items.length) {
     return (
-      <section className="min-h-screen linen-bg pt-32">
-        <div className="max-w-3xl mx-auto px-6 text-center">
+      <section className="min-h-screen linen-bg pt-24 sm:pt-32">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="eyebrow-stitch mb-5">Your Cart</p>
-          <h1 className="heading-stitched text-4xl">Cart Is Empty</h1>
+          <h1 className="heading-stitched text-3xl sm:text-4xl">Cart Is Empty</h1>
           <p className="my-8 text-taupe">Begin with the atelier catalog and add pieces for checkout or consultation.</p>
           <Link href="/shop" className="btn-gold">Shop Collections</Link>
         </div>
@@ -24,7 +24,7 @@ export default function CartView() {
   return (
     <section className="min-h-screen linen-bg pt-28 pb-16">
       <div className="absolute inset-0 bg-ivory/75" />
-      <div className="relative max-w-6xl mx-auto px-6">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         <p className="eyebrow-stitch mb-5">Your Cart</p>
         <div className="grid gap-8 lg:grid-cols-[1fr_360px]">
           <div className="space-y-4">

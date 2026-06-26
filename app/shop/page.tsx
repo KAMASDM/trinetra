@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductGrid from "@/components/ecommerce/ProductGrid";
@@ -29,7 +30,9 @@ export default async function ShopPage() {
           </p>
         </div>
       </section>
-      <ProductGrid products={products} />
+      <Suspense>
+        <ProductGrid products={products} />
+      </Suspense>
       <Footer />
     </main>
   );

@@ -48,11 +48,11 @@ function TrackOrderForm() {
   }
 
   return (
-    <section className="min-h-screen linen-bg pt-32 pb-16">
+    <section className="min-h-screen linen-bg pt-24 sm:pt-32 pb-16">
       <div className="absolute inset-0 bg-ivory/75" />
-      <div className="relative max-w-2xl mx-auto px-6">
+      <div className="relative max-w-2xl mx-auto px-4 sm:px-6">
         <p className="eyebrow-stitch mb-5">Track Order</p>
-        <h1 className="heading-stitched text-4xl mb-8">Where Is My Order</h1>
+        <h1 className="heading-stitched text-3xl sm:text-4xl mb-8">Where Is My Order</h1>
 
         <form onSubmit={handleSubmit} className="border border-gold/20 bg-warm-white/90 p-6 space-y-4">
           <label className="block">

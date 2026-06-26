@@ -19,6 +19,9 @@ type CartContextValue = {
   removeItem: (key: string) => void;
   clearCart: () => void;
   itemKey: (item: CartItem) => string;
+  isDrawerOpen: boolean;
+  openDrawer: () => void;
+  closeDrawer: () => void;
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -33,6 +36,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const stored = window.localStorage.getItem("trinetra-cart");
     return stored ? (JSON.parse(stored) as CartItem[]) : [];
   });
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     window.localStorage.setItem("trinetra-cart", JSON.stringify(items));
@@ -80,8 +84,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       removeItem,
       clearCart: () => setItems([]),
       itemKey: getItemKey,
+      isDrawerOpen,
+      openDrawer: () => setIsDrawerOpen(true),
+      closeDrawer: () => setIsDrawerOpen(false),
     };
-  }, [items]);
+  }, [items, isDrawerOpen]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

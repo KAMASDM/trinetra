@@ -61,7 +61,7 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 overflow-hidden"
+      className="relative py-16 sm:py-24 overflow-hidden"
       style={{ background: "linear-gradient(160deg, #1E1610 0%, #2a1908 50%, #1E1610 100%)" }}
     >
       {/* Subtle linen */}

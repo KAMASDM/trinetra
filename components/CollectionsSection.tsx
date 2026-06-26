@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 const collections = [
@@ -143,7 +144,7 @@ export default function CollectionsSection() {
     <section
       id="collections"
       ref={sectionRef}
-      className="relative py-24 linen-bg"
+      className="relative py-16 sm:py-24 linen-bg"
     >
       {/* Subtle linen tint overlay */}
       <div className="absolute inset-0 bg-ivory/70 pointer-events-none" />
@@ -201,12 +202,12 @@ export default function CollectionsSection() {
         {/* Collection Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {collections.map((col, idx) => (
-            <div
+            <Link
               key={col.id}
-              className="collection-card reveal group"
+              href={`/shop?category=${encodeURIComponent(col.category)}`}
+              className="collection-card reveal group block h-[340px] sm:h-[420px]"
               style={{
                 animationDelay: `${idx * 0.12}s`,
-                height: "420px",
               }}
             >
               {/* Background — photo if available, else gradient */}
@@ -315,8 +316,7 @@ export default function CollectionsSection() {
                   {col.description}
                 </p>
 
-                <a
-                  href={`#${col.category.toLowerCase().replace(/\s+/g, "-")}`}
+                <span
                   className="inline-flex items-center gap-3 group/link"
                   style={{
                     color: col.accentColor,
@@ -326,11 +326,11 @@ export default function CollectionsSection() {
                     textTransform: "uppercase",
                   }}
                 >
-                  Explore
+                  Shop Now
                   <span className="inline-block w-6 h-px bg-current transition-all duration-300 group-hover/link:w-10" />
-                </a>
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

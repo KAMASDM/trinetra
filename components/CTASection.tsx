@@ -18,7 +18,7 @@ export default function CTASection() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative py-24 linen-bg overflow-hidden"
+      className="relative py-16 sm:py-24 linen-bg overflow-hidden"
     >
       <div className="absolute inset-0 bg-ivory/80 pointer-events-none" />
 

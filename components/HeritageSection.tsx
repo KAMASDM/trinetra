@@ -92,7 +92,7 @@ export default function HeritageSection() {
     <section
       id="heritage"
       ref={sectionRef}
-      className="relative py-24 overflow-hidden"
+      className="relative py-16 sm:py-24 overflow-hidden"
       style={{ background: "linear-gradient(160deg, #1E1610 0%, #2a1a0e 50%, #1E1610 100%)" }}
     >
       {/* Linen texture overlay */}
@@ -221,7 +221,7 @@ export default function HeritageSection() {
 
             {/* Centre quote card */}
             <div
-              className="absolute inset-14 flex flex-col items-center justify-center text-center rounded-full"
+              className="absolute inset-8 sm:inset-14 flex flex-col items-center justify-center text-center rounded-full"
               style={{ background: "radial-gradient(circle, rgba(30,22,16,0.8) 0%, transparent 100%)" }}
             >
               <svg width="30" height="20" viewBox="0 0 30 20" className="mb-3 opacity-60">

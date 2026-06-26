@@ -17,11 +17,11 @@ export default async function OrderConfirmationPage({
   }
 
   return (
-    <section className="min-h-screen linen-bg pt-32 pb-16">
+    <section className="min-h-screen linen-bg pt-24 sm:pt-32 pb-16">
       <div className="absolute inset-0 bg-ivory/75" />
-      <div className="relative max-w-3xl mx-auto px-6 text-center">
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <p className="eyebrow-stitch mb-5">Order Confirmed</p>
-        <h1 className="heading-stitched text-4xl">Thank You, {order.customer.name.split(" ")[0]}</h1>
+        <h1 className="heading-stitched text-3xl sm:text-4xl">Thank You, {order.customer.name.split(" ")[0]}</h1>
         <p className="my-6 text-taupe">
           Order <span className="text-crimson font-cinzel">#{order.id.slice(-8).toUpperCase()}</span> has been
           received and payment confirmed. We will reach out for measurement or styling consultation if needed.

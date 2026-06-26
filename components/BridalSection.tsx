@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 const bridalHighlights = [
@@ -8,16 +9,19 @@ const bridalHighlights = [
     title: "Bridal Lehenga",
     desc: "Opulent zardozi & real gold-thread embroidery on Katan silk. Made-to-measure over 3–4 weeks with 12 master artisans.",
     icon: "✦",
+    category: "Bridal Lehengas",
   },
   {
     title: "Wedding Saree",
     desc: "Kanchi & Banarasi silks with hand-woven gold border. Every saree takes 20–90 days on the handloom.",
     icon: "✦",
+    category: "Heritage Sarees",
   },
   {
     title: "Bridal Blouse",
     desc: "Custom-crafted, heavily embellished blouses with patch-work, mirror-work and Swarovski detailing.",
     icon: "✦",
+    category: "Bridal Blouses",
   },
 ];
 
@@ -37,7 +41,7 @@ export default function BridalSection() {
     <section
       id="bridal"
       ref={sectionRef}
-      className="relative py-32 overflow-hidden"
+      className="relative py-20 sm:py-32 overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #5C0E0E 0%, #3A0808 40%, #1E1610 100%)",
       }}
@@ -174,7 +178,7 @@ export default function BridalSection() {
         {/* Bridal lehenga showcase photo */}
         <div className="relative mb-14 mx-auto reveal" style={{ maxWidth: "460px" }}>
           <div
-            className="relative overflow-hidden"
+            className="relative overflow-hidden aspect-[23/24]"
             style={{
               border: "1px solid rgba(201,146,42,0.35)",
               outline: "1px solid rgba(201,146,42,0.12)",
@@ -184,15 +188,11 @@ export default function BridalSection() {
             <Image
               src="/bridal-lehenga.jpg"
               alt="Bridal Lehenga by Trinetra"
-              width={460}
-              height={480}
+              fill
               sizes="(max-width: 640px) 100vw, 460px"
               style={{
-                width: "100%",
-                height: "480px",
                 objectFit: "cover",
                 objectPosition: "center top",
-                display: "block",
               }}
             />
             {/* Vignette overlay */}
@@ -228,9 +228,10 @@ export default function BridalSection() {
         {/* Highlight cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-14">
           {bridalHighlights.map((item, i) => (
-            <div
+            <Link
               key={i}
-              className="reveal text-left p-7 relative overflow-hidden group"
+              href={`/shop?category=${encodeURIComponent(item.category)}`}
+              className="reveal text-left p-7 relative overflow-hidden group block"
               style={{
                 background: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(201,146,42,0.25)",
@@ -300,7 +301,7 @@ export default function BridalSection() {
                   background: "linear-gradient(90deg, transparent, rgba(201,146,42,0.4), transparent)",
                 }}
               />
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -309,9 +310,9 @@ export default function BridalSection() {
           <a href="#contact" className="btn-gold">
             Book Bridal Consultation
           </a>
-          <a href="#collections" className="btn-outline-gold">
+          <Link href="/shop?category=Bridal%20Lehengas" className="btn-outline-gold">
             View Full Bridal Range
-          </a>
+          </Link>
         </div>
       </div>
 

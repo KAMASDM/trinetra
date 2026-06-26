@@ -151,7 +151,7 @@ export default function CheckoutForm() {
     <section className="min-h-screen linen-bg pt-28 pb-16">
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
       <div className="absolute inset-0 bg-ivory/75" />
-      <div className="relative max-w-6xl mx-auto px-6">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         <p className="eyebrow-stitch mb-5">Checkout</p>
 
         {!isRegistered && checkoutMode === "choose" && (
@@ -294,7 +294,7 @@ export default function CheckoutForm() {
         )}
       </div>
       {!cart.items.length && status === "idle" && (
-        <div className="relative max-w-6xl mx-auto px-6 mt-6">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 mt-6">
           <Link href="/shop" className="btn-outline-gold">Your cart is empty — Browse the shop</Link>
         </div>
       )}

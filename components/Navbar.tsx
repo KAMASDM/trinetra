@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import CartDrawer from "@/components/ecommerce/CartDrawer";
 import { useCart } from "@/components/ecommerce/CartContext";
 
 const navLinks = [
@@ -17,7 +16,6 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
   const cart = useCart();
 
   useEffect(() => {
@@ -34,7 +32,7 @@ export default function Navbar() {
           : "bg-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <Image
@@ -42,7 +40,7 @@ export default function Navbar() {
             alt="Trinetra Logo"
             width={40}
             height={40}
-            className="w-10 h-10 flex-shrink-0"
+            className="w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0"
             style={{ objectFit: "contain" }}
           />
 
@@ -83,7 +81,7 @@ export default function Navbar() {
           <Link href="/account/orders" className="text-[11px] uppercase tracking-[0.3em] text-warm-white/70 hover:text-gold">
             Account
           </Link>
-          <button onClick={() => setCartOpen(true)} className="btn-outline-gold text-[11px] py-3 px-5">
+          <button onClick={cart.openDrawer} className="btn-outline-gold text-[11px] py-3 px-5">
             Cart ({cart.count})
           </button>
           <Link href="/admin" className="btn-gold text-[11px] py-3 px-6">
@@ -91,27 +89,41 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden flex flex-col gap-1.5 p-2 group"
-          aria-label="Toggle menu"
-        >
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className={`block h-px w-6 bg-gold transition-all duration-300 ${
-                mobileOpen && i === 0
-                  ? "rotate-45 translate-y-2"
-                  : mobileOpen && i === 1
-                  ? "opacity-0 scale-x-0"
-                  : mobileOpen && i === 2
-                  ? "-rotate-45 -translate-y-2"
-                  : ""
-              }`}
-            />
-          ))}
-        </button>
+        {/* Mobile: cart + hamburger (Account/Cart core actions live in the bottom nav) */}
+        <div className="flex items-center gap-3 lg:hidden">
+          <button onClick={cart.openDrawer} className="relative p-2" aria-label="Open cart">
+            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="#C9922A" strokeWidth="1.5">
+              <path d="M3 6h2l1.6 9.6a2 2 0 0 0 2 1.7h8.8a2 2 0 0 0 2-1.6L21 9H6" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="9" cy="20" r="1.4" fill="#C9922A" stroke="none" />
+              <circle cx="17" cy="20" r="1.4" fill="#C9922A" stroke="none" />
+            </svg>
+            {cart.count > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-crimson px-1 text-[9px] text-warm-white">
+                {cart.count}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex flex-col gap-1.5 p-2 group"
+            aria-label="Toggle menu"
+          >
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className={`block h-px w-6 bg-gold transition-all duration-300 ${
+                  mobileOpen && i === 0
+                    ? "rotate-45 translate-y-2"
+                    : mobileOpen && i === 1
+                    ? "opacity-0 scale-x-0"
+                    : mobileOpen && i === 2
+                    ? "-rotate-45 -translate-y-2"
+                    : ""
+                }`}
+              />
+            ))}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -135,35 +147,13 @@ export default function Navbar() {
               </li>
             ))}
             <li>
-              <Link
-                href="/account/orders"
-                onClick={() => setMobileOpen(false)}
-                className="text-warm-white/70 hover:text-gold transition-colors text-[11px] tracking-[0.3em] uppercase"
-                style={{ fontFamily: "var(--font-jost), sans-serif" }}
-              >
-                Account
-              </Link>
-            </li>
-            <li>
-              <button
-                onClick={() => {
-                  setMobileOpen(false);
-                  setCartOpen(true);
-                }}
-                className="btn-outline-gold inline-flex text-[11px] py-3 px-6 mt-2"
-              >
-                Cart ({cart.count})
-              </button>
-            </li>
-            <li>
-              <Link href="/admin" className="btn-gold inline-flex text-[11px] py-3 px-6 mt-2">
+              <Link href="/admin" onClick={() => setMobileOpen(false)} className="btn-gold inline-flex text-[11px] py-3 px-6 mt-2">
                 Admin
               </Link>
             </li>
           </ul>
         </div>
       </div>
-      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </nav>
   );
 }
