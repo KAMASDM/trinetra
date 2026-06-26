@@ -232,7 +232,7 @@ export default function HeritageSection() {
 
               {/* Quote, curved along the circle's underside */}
               <svg
-                className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-1/3 w-[112%]"
+                className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-[58%] w-[112%]"
                 viewBox="0 0 300 70"
                 style={{ overflow: "visible" }}
                 xmlns="http://www.w3.org/2000/svg"

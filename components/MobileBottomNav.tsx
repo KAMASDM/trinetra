@@ -1,16 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/components/ecommerce/CartContext";
-
-function HomeIcon({ active }: { active: boolean }) {
-  return (
-    <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke={active ? "#E6B400" : "rgba(255,253,248,0.6)"} strokeWidth="1.5">
-      <path d="M3 11.5 12 4l9 7.5M5.5 10v9a1 1 0 0 0 1 1H10v-5.5h4V20h3.5a1 1 0 0 0 1-1v-9" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 function ShopIcon({ active }: { active: boolean }) {
   return (
@@ -46,74 +39,61 @@ export default function MobileBottomNav() {
 
   if (pathname.startsWith("/admin")) return null;
 
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
-
-  const tabs = [
-    { label: "Home", href: "/", icon: HomeIcon },
-    { label: "Shop", href: "/shop", icon: ShopIcon },
-    { label: "Account", href: "/account/orders", icon: AccountIcon },
-  ];
+  const isActive = (href: string) => pathname.startsWith(href);
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-gold/20 bg-charcoal/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
-      <div className="grid grid-cols-4">
-        {tabs.slice(0, 2).map((tab) => {
-          const active = isActive(tab.href);
-          return (
-            <Link
-              key={tab.href}
-              href={tab.href}
-              className="flex flex-col items-center justify-center gap-1 py-2.5"
+    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50">
+      <div className="relative border-t border-gold/20 bg-charcoal/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
+        <div className="flex items-stretch justify-between px-1">
+          <Link href="/shop" className="flex flex-1 flex-col items-center justify-center gap-1 py-2.5">
+            <ShopIcon active={isActive("/shop")} />
+            <span
+              className={`text-[9px] uppercase tracking-[0.15em] ${isActive("/shop") ? "text-gold" : "text-warm-white/60"}`}
+              style={{ fontFamily: "var(--font-jost), sans-serif" }}
             >
-              <tab.icon active={active} />
-              <span
-                className={`text-[9px] uppercase tracking-[0.15em] ${active ? "text-gold" : "text-warm-white/60"}`}
-                style={{ fontFamily: "var(--font-jost), sans-serif" }}
-              >
-                {tab.label}
-              </span>
-            </Link>
-          );
-        })}
+              Shop
+            </span>
+          </Link>
 
-        <button
-          onClick={cart.openDrawer}
-          className="relative flex flex-col items-center justify-center gap-1 py-2.5"
+          <button onClick={cart.openDrawer} className="relative flex flex-1 flex-col items-center justify-center gap-1 py-2.5">
+            <span className="relative">
+              <CartIcon active={cart.isDrawerOpen} />
+              {cart.count > 0 && (
+                <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-crimson px-1 text-[9px] text-warm-white">
+                  {cart.count}
+                </span>
+              )}
+            </span>
+            <span
+              className={`text-[9px] uppercase tracking-[0.15em] ${cart.isDrawerOpen ? "text-gold" : "text-warm-white/60"}`}
+              style={{ fontFamily: "var(--font-jost), sans-serif" }}
+            >
+              Cart
+            </span>
+          </button>
+
+          {/* Reserved space for the centered logo button below */}
+          <div className="w-16 flex-shrink-0" aria-hidden />
+
+          <Link href="/account/orders" className="flex flex-1 flex-col items-center justify-center gap-1 py-2.5">
+            <AccountIcon active={isActive("/account")} />
+            <span
+              className={`text-[9px] uppercase tracking-[0.15em] ${isActive("/account") ? "text-gold" : "text-warm-white/60"}`}
+              style={{ fontFamily: "var(--font-jost), sans-serif" }}
+            >
+              Account
+            </span>
+          </Link>
+        </div>
+
+        {/* Brand mark, raised half on / half above the bar, doubles as the Home shortcut */}
+        <Link
+          href="/"
+          aria-label="Home"
+          className="absolute left-1/2 -top-6 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-full border-2 border-gold bg-charcoal shadow-[0_4px_14px_rgba(0,0,0,0.5)]"
         >
-          <span className="relative">
-            <CartIcon active={cart.isDrawerOpen} />
-            {cart.count > 0 && (
-              <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-crimson px-1 text-[9px] text-warm-white">
-                {cart.count}
-              </span>
-            )}
-          </span>
-          <span
-            className={`text-[9px] uppercase tracking-[0.15em] ${cart.isDrawerOpen ? "text-gold" : "text-warm-white/60"}`}
-            style={{ fontFamily: "var(--font-jost), sans-serif" }}
-          >
-            Cart
-          </span>
-        </button>
-
-        {tabs.slice(2).map((tab) => {
-          const active = isActive(tab.href);
-          return (
-            <Link
-              key={tab.href}
-              href={tab.href}
-              className="flex flex-col items-center justify-center gap-1 py-2.5"
-            >
-              <tab.icon active={active} />
-              <span
-                className={`text-[9px] uppercase tracking-[0.15em] ${active ? "text-gold" : "text-warm-white/60"}`}
-                style={{ fontFamily: "var(--font-jost), sans-serif" }}
-              >
-                {tab.label}
-              </span>
-            </Link>
-          );
-        })}
+          <Image src="/logo.png" alt="Trinetra" width={34} height={34} className="h-[34px] w-[34px] object-contain" />
+        </Link>
       </div>
     </nav>
   );
