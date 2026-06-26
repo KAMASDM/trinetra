@@ -1,19 +1,22 @@
 "use client";
 
+import { useConsultation } from "./ConsultationContext";
 import ConsultationForm from "./ConsultationForm";
 
-export default function ConsultationDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
+export default function ConsultationDrawer() {
+  const { isOpen, close } = useConsultation();
+
   return (
     <>
       <div
         className={`fixed inset-0 z-[60] bg-charcoal/60 transition-opacity duration-300 ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
+          isOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
-        onClick={onClose}
+        onClick={close}
       />
       <aside
         className={`fixed right-0 top-0 z-[70] h-full w-full max-w-md border-l border-gold/25 bg-ivory transition-transform duration-500 ${
-          open ? "translate-x-0" : "translate-x-full"
+          isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex h-full flex-col">
@@ -22,7 +25,7 @@ export default function ConsultationDrawer({ open, onClose }: { open: boolean; o
               <p className="eyebrow-stitch text-[10px]" style={{ color: "var(--crimson)" }}>Begin Your Journey</p>
               <p className="mt-1 font-cinzel text-lg text-charcoal">Book A Consultation</p>
             </div>
-            <button onClick={onClose} aria-label="Close" className="text-taupe hover:text-crimson text-xl">
+            <button onClick={close} aria-label="Close" className="text-taupe hover:text-crimson text-xl">
               ✕
             </button>
           </div>

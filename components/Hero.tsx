@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useConsultation } from "./ConsultationContext";
 
 /* Decorative mandala / paisley petals around the hero */
 function FloatingPetal({ x, y, delay, size }: { x: string; y: string; delay: number; size: number }) {
@@ -65,6 +66,7 @@ function CornerOrnament({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const consultation = useConsultation();
 
   useEffect(() => {
     const handleParallax = () => {
@@ -248,9 +250,9 @@ export default function Hero() {
           <a href="#collections" className="btn-gold">
             Explore Collections
           </a>
-          <a href="#bridal" className="btn-outline-gold">
+          <button type="button" onClick={consultation.open} className="btn-outline-gold">
             Bridal Consult
-          </a>
+          </button>
         </div>
 
         {/* Scroll indicator */}

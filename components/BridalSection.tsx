@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { useConsultation } from "./ConsultationContext";
 
 const bridalHighlights = [
   {
@@ -27,6 +28,7 @@ const bridalHighlights = [
 
 export default function BridalSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const consultation = useConsultation();
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -307,9 +309,9 @@ export default function BridalSection() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-5 reveal">
-          <a href="#contact" className="btn-gold">
+          <button type="button" onClick={consultation.open} className="btn-gold">
             Book Bridal Consultation
-          </a>
+          </button>
           <Link href="/shop?category=Bridal%20Lehengas" className="btn-outline-gold">
             View Full Bridal Range
           </Link>

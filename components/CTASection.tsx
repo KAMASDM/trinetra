@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import ConsultationDrawer from "./ConsultationDrawer";
+import { useEffect, useRef } from "react";
+import { useConsultation } from "./ConsultationContext";
 
 export default function CTASection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [consultationOpen, setConsultationOpen] = useState(false);
+  const consultation = useConsultation();
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -181,7 +181,7 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
             <button
               type="button"
-              onClick={() => setConsultationOpen(true)}
+              onClick={consultation.open}
               className="btn-gold"
               style={{ background: "linear-gradient(135deg, #8B1A1A, #E6B400)" }}
             >
@@ -199,7 +199,6 @@ export default function CTASection() {
           </div>
         </div>
       </div>
-      <ConsultationDrawer open={consultationOpen} onClose={() => setConsultationOpen(false)} />
     </section>
   );
 }

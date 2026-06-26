@@ -1,4 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useConsultation } from "./ConsultationContext";
+
+const CONSULTATION_LINKS = new Set(["Bridal Consult", "Book Appointment"]);
 
 const footerLinks = {
   Collections: ["Shop All", "Bridal Lehengas", "Dress Materials", "Designer Kurtas", "Chaniya Choli", "Bridal Blouses"],
@@ -15,8 +20,6 @@ const footerHrefs: Record<string, string> = {
   "Bridal Blouses": "/shop",
   "Our Heritage": "/#heritage",
   Craftsmanship: "/#craftsmanship",
-  "Bridal Consult": "/#bridal",
-  "Book Appointment": "/#contact",
   "My Orders": "/account/orders",
   "Terms & Conditions": "/terms",
   "Privacy Policy": "/privacy",
@@ -25,6 +28,8 @@ const footerHrefs: Record<string, string> = {
 };
 
 export default function Footer() {
+  const consultation = useConsultation();
+
   return (
     <footer
       className="relative overflow-hidden"
@@ -162,18 +167,25 @@ export default function Footer() {
               </svg>
 
               <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href={footerHrefs[link] ?? "#"}
-                      className="text-warm-white/35 hover:text-gold transition-colors duration-300 text-[12px] tracking-wider flex items-center gap-2 group"
-                      style={{ fontFamily: "var(--font-jost), sans-serif" }}
-                    >
-                      <span className="w-2 h-px bg-gold/0 group-hover:bg-gold/60 transition-all duration-300" />
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                {links.map((link) => {
+                  const className = "text-warm-white/35 hover:text-gold transition-colors duration-300 text-[12px] tracking-wider flex items-center gap-2 group";
+                  const dot = <span className="w-2 h-px bg-gold/0 group-hover:bg-gold/60 transition-all duration-300" />;
+                  return (
+                    <li key={link}>
+                      {CONSULTATION_LINKS.has(link) ? (
+                        <button type="button" onClick={consultation.open} className={className} style={{ fontFamily: "var(--font-jost), sans-serif" }}>
+                          {dot}
+                          {link}
+                        </button>
+                      ) : (
+                        <a href={footerHrefs[link] ?? "#"} className={className} style={{ fontFamily: "var(--font-jost), sans-serif" }}>
+                          {dot}
+                          {link}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

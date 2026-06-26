@@ -3,6 +3,8 @@
 import { CartProvider, useCart } from "./CartContext";
 import CartDrawer from "./CartDrawer";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import { ConsultationProvider } from "@/components/ConsultationContext";
+import ConsultationDrawer from "@/components/ConsultationDrawer";
 
 function CartChrome({ children }: { children: React.ReactNode }) {
   const cart = useCart();
@@ -12,6 +14,7 @@ function CartChrome({ children }: { children: React.ReactNode }) {
       <div className="pb-20 lg:pb-0">{children}</div>
       <CartDrawer open={cart.isDrawerOpen} onClose={cart.closeDrawer} />
       <MobileBottomNav />
+      <ConsultationDrawer />
     </>
   );
 }
@@ -19,7 +22,9 @@ function CartChrome({ children }: { children: React.ReactNode }) {
 export default function CartProviderShell({ children }: { children: React.ReactNode }) {
   return (
     <CartProvider>
-      <CartChrome>{children}</CartChrome>
+      <ConsultationProvider>
+        <CartChrome>{children}</CartChrome>
+      </ConsultationProvider>
     </CartProvider>
   );
 }
