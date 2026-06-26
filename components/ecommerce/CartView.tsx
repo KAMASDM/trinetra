@@ -12,8 +12,8 @@ export default function CartView() {
     return (
       <section className="min-h-screen linen-bg pt-24 sm:pt-32">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="eyebrow-stitch mb-5">Your Cart</p>
-          <h1 className="heading-stitched text-3xl sm:text-4xl">Cart Is Empty</h1>
+          <p className="eyebrow-stitch mb-5" style={{ color: "var(--crimson)" }}>Your Cart</p>
+          <h1 className="heading-stitched text-3xl sm:text-4xl" style={{ color: "var(--crimson)" }}>Cart Is Empty</h1>
           <p className="my-8 text-taupe">Begin with the atelier catalog and add pieces for checkout or consultation.</p>
           <Link href="/shop" className="btn-gold">Shop Collections</Link>
         </div>

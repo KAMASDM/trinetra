@@ -83,7 +83,7 @@ export default function CraftsmanshipSection() {
 
         {/* Header */}
         <div className="text-center mb-16 reveal">
-          <p className="eyebrow-stitch mb-4">How We Create</p>
+          <p className="eyebrow-stitch mb-4" style={{ color: "var(--crimson)" }}>How We Create</p>
 
           <svg
             className="w-full max-w-3xl mx-auto mb-2"
@@ -98,7 +98,7 @@ export default function CraftsmanshipSection() {
               fontSize="58"
               fontWeight="700"
               letterSpacing="10"
-              fill="rgba(201,146,42,0.06)"
+              fill="rgba(139,26,26,0.06)"
             >
               THE ART OF CREATION
             </text>
@@ -110,7 +110,7 @@ export default function CraftsmanshipSection() {
               fontSize="58"
               fontWeight="700"
               letterSpacing="10"
-              className="stitch-static"
+              className="stitch-static-crimson"
             >
               THE ART OF CREATION
             </text>
@@ -211,7 +211,7 @@ export default function CraftsmanshipSection() {
         <div className="mt-20 reveal">
           <p
             className="text-center eyebrow-stitch mb-8"
-            style={{ color: "#E6B400", opacity: 0.7, fontSize: "0.65rem" }}
+            style={{ color: "#8B1A1A", opacity: 0.7, fontSize: "0.65rem" }}
           >
             Our Masterwork
           </p>

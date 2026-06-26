@@ -117,7 +117,7 @@ function DesktopLayout({ category, setCategory, query, setQuery, sort, setSort, 
   return (
     <div className="grid gap-4 lg:grid-cols-[260px_1fr]">
       <aside className="border border-gold/20 bg-warm-white/70 p-5 h-fit">
-        <p className="eyebrow-stitch mb-5">Refine</p>
+        <p className="eyebrow-stitch mb-5" style={{ color: "var(--crimson)" }}>Refine</p>
         <label className="block mb-5">
           <span className="text-[10px] tracking-[0.35em] uppercase text-taupe">Search</span>
           <input

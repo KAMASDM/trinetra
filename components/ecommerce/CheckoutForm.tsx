@@ -152,7 +152,7 @@ export default function CheckoutForm() {
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
       <div className="absolute inset-0 bg-ivory/75" />
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-        <p className="eyebrow-stitch mb-5">Checkout</p>
+        <p className="eyebrow-stitch mb-5" style={{ color: "var(--crimson)" }}>Checkout</p>
 
         {!isRegistered && checkoutMode === "choose" && (
           <div className="mb-8 grid gap-4 sm:grid-cols-2 max-w-2xl">

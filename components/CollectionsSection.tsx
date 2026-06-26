@@ -152,7 +152,7 @@ export default function CollectionsSection() {
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16 reveal">
-          <p className="eyebrow-stitch mb-4">Curated for You</p>
+          <p className="eyebrow-stitch mb-4" style={{ color: "var(--crimson)" }}>Curated for You</p>
 
           {/* Stitched SVG heading */}
           <svg
@@ -168,7 +168,7 @@ export default function CollectionsSection() {
               fontSize="64"
               fontWeight="700"
               letterSpacing="12"
-              fill="rgba(201,146,42,0.06)"
+              fill="rgba(139,26,26,0.06)"
               stroke="none"
             >
               COLLECTIONS
@@ -182,7 +182,7 @@ export default function CollectionsSection() {
               fontSize="64"
               fontWeight="700"
               letterSpacing="12"
-              className="stitch-static"
+              className="stitch-static-crimson"
             >
               COLLECTIONS
             </text>

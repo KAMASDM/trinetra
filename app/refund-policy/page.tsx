@@ -21,7 +21,7 @@ export default function RefundPolicyPage() {
       <p>
         Please review product details, fabric, sizing, colour and customization notes carefully before completing
         payment. If you have any questions about fit, fabric or customization, contact us at{" "}
-        <a className="text-crimson underline" href="mailto:hello@trinetra.in">hello@trinetra.in</a> before placing
+        <a className="text-crimson underline" href="mailto:reachout@trinetrastudio.in">reachout@trinetrastudio.in</a> before placing
         your order — our team is happy to help you choose correctly.
       </p>
 
@@ -32,14 +32,14 @@ export default function RefundPolicyPage() {
       <p>
         If your order arrives damaged in transit or does not match what you ordered, please contact us within 48
         hours of delivery at{" "}
-        <a className="text-crimson underline" href="mailto:hello@trinetra.in">hello@trinetra.in</a> with photos
+        <a className="text-crimson underline" href="mailto:reachout@trinetrastudio.in">reachout@trinetrastudio.in</a> with photos
         and your order ID, and we will review it on a case-by-case basis.
       </p>
 
       <h2>Contact</h2>
       <p>
         Questions about this policy can be sent to{" "}
-        <a className="text-crimson underline" href="mailto:hello@trinetra.in">hello@trinetra.in</a>.
+        <a className="text-crimson underline" href="mailto:reachout@trinetrastudio.in">reachout@trinetrastudio.in</a>.
       </p>
     </LegalLayout>
   );

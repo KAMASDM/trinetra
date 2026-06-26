@@ -71,7 +71,7 @@ export default function TermsPage() {
       <h2>10. Contact</h2>
       <p>
         For any questions about these Terms, write to us at{" "}
-        <a className="text-crimson underline" href="mailto:hello@trinetra.in">hello@trinetra.in</a>.
+        <a className="text-crimson underline" href="mailto:reachout@trinetrastudio.in">reachout@trinetrastudio.in</a>.
       </p>
     </LegalLayout>
   );

@@ -36,7 +36,7 @@ export default function CTASection() {
       <div className="relative max-w-4xl mx-auto px-6 text-center">
 
         <div className="reveal">
-          <p className="eyebrow-stitch mb-6">Begin Your Journey</p>
+          <p className="eyebrow-stitch mb-6" style={{ color: "var(--crimson)" }}>Begin Your Journey</p>
 
           {/* Stitched heading */}
           <svg
@@ -125,7 +125,7 @@ export default function CTASection() {
                   </svg>
                 ),
                 label: "Our Atelier",
-                value: ["Rajababu Showroom,", "Heritage Lane, City Centre"],
+                value: ["19, Vishwas Colony Rd, Vishwas Colony,", "Alkapuri, Vadodara, Gujarat 390007"],
               },
               {
                 icon: (
@@ -134,7 +134,7 @@ export default function CTASection() {
                   </svg>
                 ),
                 label: "Call Us",
-                value: ["+91 98765 43210", "Mon–Sat · 10am–8pm"],
+                value: ["098258 93059", "Mon–Sat · 10am–8pm"],
               },
               {
                 icon: (
@@ -144,7 +144,7 @@ export default function CTASection() {
                   </svg>
                 ),
                 label: "Email",
-                value: ["hello@trinetra.in", "We reply within 2 hours"],
+                value: ["reachout@trinetrastudio.in", "We reply within 2 hours"],
               },
             ].map((item, i) => (
               <div key={i} className="flex gap-3">
@@ -178,7 +178,7 @@ export default function CTASection() {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
             <a
-              href="tel:+919876543210"
+              href="tel:+919825893059"
               className="btn-gold"
               style={{ background: "linear-gradient(135deg, #8B1A1A, #E6B400)" }}
             >

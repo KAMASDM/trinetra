@@ -53,7 +53,7 @@ export default function PrivacyPage() {
       <h2>7. Your Rights</h2>
       <p>
         You may request access to, correction of, or deletion of your personal information by writing to us at{" "}
-        <a className="text-crimson underline" href="mailto:hello@trinetra.in">hello@trinetra.in</a>. Deleting your
+        <a className="text-crimson underline" href="mailto:reachout@trinetrastudio.in">reachout@trinetrastudio.in</a>. Deleting your
         account does not affect orders already placed, which we retain for accounting purposes.
       </p>
 
@@ -69,7 +69,7 @@ export default function PrivacyPage() {
       <h2>10. Contact</h2>
       <p>
         For privacy questions, write to{" "}
-        <a className="text-crimson underline" href="mailto:hello@trinetra.in">hello@trinetra.in</a>.
+        <a className="text-crimson underline" href="mailto:reachout@trinetrastudio.in">reachout@trinetrastudio.in</a>.
       </p>
     </LegalLayout>
   );

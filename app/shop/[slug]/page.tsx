@@ -61,7 +61,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
 
             <aside>
-              <p className="eyebrow-stitch mb-5">{product.category}</p>
+              <p className="eyebrow-stitch mb-5" style={{ color: "var(--crimson)" }}>{product.category}</p>
               <h1 className="font-cinzel text-4xl leading-tight text-charcoal">{product.name}</h1>
               <div className="mt-5 flex items-baseline gap-3">
                 <p className="font-cinzel text-2xl text-crimson">{formatPrice(product.price)}</p>

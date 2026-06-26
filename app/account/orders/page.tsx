@@ -20,8 +20,8 @@ export default async function MyOrdersPage() {
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
         <div className="flex items-start justify-between gap-4 mb-8">
           <div>
-            <p className="eyebrow-stitch mb-5">My Account</p>
-            <h1 className="heading-stitched text-3xl sm:text-4xl">Order History</h1>
+            <p className="eyebrow-stitch mb-5" style={{ color: "var(--crimson)" }}>My Account</p>
+            <h1 className="heading-stitched text-3xl sm:text-4xl" style={{ color: "var(--crimson)" }}>Order History</h1>
           </div>
           <LogoutButton />
         </div>
