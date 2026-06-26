@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const footerLinks = {
   Collections: ["Shop All", "Bridal Lehengas", "Dress Materials", "Designer Kurtas", "Chaniya Choli", "Bridal Blouses"],
-  Studio: ["Our Heritage", "Craftsmanship", "Bridal Consult", "Book Appointment", "My Orders", "Admin"],
+  Studio: ["Our Heritage", "Craftsmanship", "Bridal Consult", "Book Appointment", "My Orders"],
   Policies: ["Terms & Conditions", "Privacy Policy", "Refund Policy", "Track Order"],
 };
 
@@ -18,7 +18,6 @@ const footerHrefs: Record<string, string> = {
   "Bridal Consult": "/#bridal",
   "Book Appointment": "/#contact",
   "My Orders": "/account/orders",
-  Admin: "/admin",
   "Terms & Conditions": "/terms",
   "Privacy Policy": "/privacy",
   "Refund Policy": "/refund-policy",
