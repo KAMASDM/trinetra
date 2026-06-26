@@ -81,12 +81,9 @@ export default function Navbar() {
           <Link href="/account/orders" className="text-[11px] uppercase tracking-[0.3em] text-warm-white/70 hover:text-gold">
             Account
           </Link>
-          <button onClick={cart.openDrawer} className="btn-outline-gold text-[11px] py-3 px-5">
+          <button onClick={cart.openDrawer} className="btn-gold text-[11px] py-3 px-5">
             Cart ({cart.count})
           </button>
-          <Link href="/admin" className="btn-gold text-[11px] py-3 px-6">
-            Admin
-          </Link>
         </div>
 
         {/* Mobile: cart + hamburger (Account/Cart core actions live in the bottom nav) */}
@@ -146,11 +143,6 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href="/admin" onClick={() => setMobileOpen(false)} className="btn-gold inline-flex text-[11px] py-3 px-6 mt-2">
-                Admin
-              </Link>
-            </li>
           </ul>
         </div>
       </div>
