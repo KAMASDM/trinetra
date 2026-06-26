@@ -3,7 +3,9 @@ import { cookies } from "next/headers";
 import { adminAuth } from "@/lib/firebase-admin";
 import { CUSTOMER_SESSION_COOKIE } from "@/lib/auth/customerDal";
 
-const SESSION_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+// Firebase session cookies cap out at 14 days (2 weeks) — createSessionCookie
+// throws auth/invalid-session-cookie-duration above that.
+const SESSION_MAX_AGE_MS = 14 * 24 * 60 * 60 * 1000;
 
 export async function POST(request: NextRequest) {
   const { idToken } = await request.json();
