@@ -4,20 +4,24 @@ import { useActionState } from "react";
 import Image from "next/image";
 import { productCategories } from "@/lib/types";
 import type { Product } from "@/lib/types";
+import type { ProductActionState } from "@/app/admin/actions";
 
 type ProductFormProps = {
-  action: (formData: FormData) => Promise<void>;
+  action: (state: ProductActionState, formData: FormData) => Promise<ProductActionState>;
   product?: Product;
 };
 
 export default function ProductForm({ action, product }: ProductFormProps) {
-  const [, formAction, pending] = useActionState(async (_: void, formData: FormData) => {
-    await action(formData);
-  }, undefined);
+  const [state, formAction, pending] = useActionState(action, {});
 
   return (
     <form action={formAction} className="border border-gold/20 bg-warm-white p-6">
       <h2 className="font-cinzel text-2xl text-charcoal">{product ? "Edit Product" : "New Product"}</h2>
+      {state.error && (
+        <p className="mt-4 border border-crimson/25 bg-crimson/5 px-4 py-3 text-sm text-crimson">
+          {state.error}
+        </p>
+      )}
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <Field name="name" label="Product name" defaultValue={product?.name} required />
         <Field name="slug" label="URL slug" defaultValue={product?.slug} required />
@@ -38,6 +42,7 @@ export default function ProductForm({ action, product }: ProductFormProps) {
         <Field name="price" label="Selling price" type="number" defaultValue={product?.price} required />
         <Field name="compareAtPrice" label="Compare-at price" type="number" defaultValue={product?.compareAtPrice} />
         <Field name="inventory" label="Inventory quantity" type="number" defaultValue={product?.inventory} required />
+        <Field name="badge" label="Product badge" placeholder="Festive Edit / Ready To Ship" defaultValue={product?.badge} />
         <Field name="dispatch" label="Dispatch window" placeholder="2-4 days / 21-35 days" defaultValue={product?.dispatch} />
         <Field name="fabric" label="Fabric" defaultValue={product?.fabric} />
         <Field name="craft" label="Craft tags" placeholder="Zardozi, Aari, Mirror work" defaultValue={product?.craft?.join(", ")} />

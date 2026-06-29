@@ -1,14 +1,31 @@
 import "server-only";
-import { FieldValue } from "firebase-admin/firestore";
+import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { adminDb } from "@/lib/firebase-admin";
 import type { Product } from "@/lib/types";
 
 const COLLECTION = "products";
 
+function toMillis(value: unknown): number | undefined {
+  if (value instanceof Timestamp) return value.toMillis();
+  return typeof value === "number" ? value : undefined;
+}
+
+function withoutUndefined<T extends Record<string, unknown>>(value: T): Partial<T> {
+  return Object.fromEntries(
+    Object.entries(value).filter(([, entry]) => entry !== undefined),
+  ) as Partial<T>;
+}
+
 function withDefaults(id: string, data: FirebaseFirestore.DocumentData): Product {
   return {
     status: "published",
     ...data,
+    gallery: Array.isArray(data.gallery) ? data.gallery : data.image ? [data.image] : [],
+    craft: Array.isArray(data.craft) ? data.craft : [],
+    colors: Array.isArray(data.colors) ? data.colors : [],
+    sizes: Array.isArray(data.sizes) ? data.sizes : [],
+    createdAt: toMillis(data.createdAt),
+    updatedAt: toMillis(data.updatedAt),
     id,
   } as Product;
 }
@@ -59,7 +76,7 @@ export type ProductInput = Omit<Product, "id" | "createdAt" | "updatedAt">;
 
 export async function createProduct(input: ProductInput): Promise<string> {
   const ref = await adminDb.collection(COLLECTION).add({
-    ...input,
+    ...withoutUndefined(input),
     createdAt: FieldValue.serverTimestamp(),
     updatedAt: FieldValue.serverTimestamp(),
   });
@@ -70,7 +87,7 @@ export async function updateProduct(id: string, input: Partial<ProductInput>): P
   await adminDb
     .collection(COLLECTION)
     .doc(id)
-    .update({ ...input, updatedAt: FieldValue.serverTimestamp() });
+    .update({ ...withoutUndefined(input), updatedAt: FieldValue.serverTimestamp() });
 }
 
 export async function deleteProduct(id: string): Promise<void> {

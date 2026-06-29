@@ -8,7 +8,11 @@ import { adminStorage } from "@/lib/firebase-admin";
 import { createProduct, deleteProduct, updateProduct, type ProductInput } from "@/lib/data/products";
 import { getOrderById, updateOrderStatus } from "@/lib/data/orders";
 import { sendOrderStatusEmail } from "@/lib/email";
-import type { OrderStatus, ProductCategory } from "@/lib/types";
+import { productCategories, type OrderStatus, type ProductCategory, type ProductStatus } from "@/lib/types";
+
+export type ProductActionState = {
+  error?: string;
+};
 
 async function requireAdmin() {
   const session = await verifySession();
@@ -33,25 +37,58 @@ function splitList(value: FormDataEntryValue | null): string[] {
     .filter(Boolean);
 }
 
+function readString(form: FormData, key: string) {
+  return String(form.get(key) ?? "").trim();
+}
+
+function readNumber(form: FormData, key: string) {
+  const value = Number(form.get(key));
+  return Number.isFinite(value) ? value : 0;
+}
+
+function readOptionalNumber(form: FormData, key: string) {
+  const raw = readString(form, key);
+  if (!raw) return undefined;
+  const value = Number(raw);
+  return Number.isFinite(value) ? value : undefined;
+}
+
+function readCategory(form: FormData): ProductCategory {
+  const category = readString(form, "category") as ProductCategory;
+  if (!productCategories.includes(category)) {
+    throw new Error("Choose a valid product category.");
+  }
+  return category;
+}
+
+function readStatus(form: FormData): ProductStatus {
+  const status = readString(form, "status") || "draft";
+  if (!["draft", "published", "archived"].includes(status)) {
+    throw new Error("Choose a valid publishing status.");
+  }
+  return status as ProductStatus;
+}
+
 function buildProductInput(form: FormData, existingImage?: string): Promise<ProductInput> | ProductInput {
   const buildWithImage = (image: string): ProductInput => ({
-    name: String(form.get("name") ?? ""),
-    slug: String(form.get("slug") ?? "").toLowerCase().trim(),
-    category: form.get("category") as ProductCategory,
-    price: Number(form.get("price")),
-    compareAtPrice: form.get("compareAtPrice") ? Number(form.get("compareAtPrice")) : undefined,
-    inventory: Number(form.get("inventory")),
-    fabric: String(form.get("fabric") ?? ""),
+    name: readString(form, "name"),
+    slug: readString(form, "slug").toLowerCase(),
+    category: readCategory(form),
+    price: readNumber(form, "price"),
+    compareAtPrice: readOptionalNumber(form, "compareAtPrice"),
+    inventory: readNumber(form, "inventory"),
+    badge: readString(form, "badge") || undefined,
+    fabric: readString(form, "fabric"),
     craft: splitList(form.get("craft")),
     sizes: splitList(form.get("sizes")),
     colors: splitList(form.get("colors")),
-    dispatch: String(form.get("dispatch") ?? ""),
-    care: String(form.get("care") ?? ""),
-    story: String(form.get("story") ?? ""),
-    description: String(form.get("description") ?? ""),
-    seoTitle: String(form.get("seoTitle") ?? ""),
-    seoDescription: String(form.get("seoDescription") ?? ""),
-    status: (form.get("status") as ProductInput["status"]) ?? "draft",
+    dispatch: readString(form, "dispatch"),
+    care: readString(form, "care"),
+    story: readString(form, "story"),
+    description: readString(form, "description"),
+    seoTitle: readString(form, "seoTitle") || undefined,
+    seoDescription: readString(form, "seoDescription") || undefined,
+    status: readStatus(form),
     image,
     gallery: image ? [image] : [],
     customizable: form.get("customizable") === "on",
@@ -66,19 +103,54 @@ function buildProductInput(form: FormData, existingImage?: string): Promise<Prod
   return buildWithImage(existingImage ?? "");
 }
 
-export async function createProductAction(formData: FormData) {
+function validateProductInput(input: ProductInput) {
+  if (!input.name) throw new Error("Product name is required.");
+  if (!input.slug) throw new Error("URL slug is required.");
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(input.slug)) {
+    throw new Error("URL slug can only contain lowercase letters, numbers and hyphens.");
+  }
+  if (input.price <= 0) throw new Error("Selling price must be greater than zero.");
+  if (input.inventory < 0) throw new Error("Inventory cannot be negative.");
+  if (!input.image) throw new Error("Please upload a main image before saving the product.");
+  if (!input.story) throw new Error("Short story is required.");
+  if (!input.description) throw new Error("Full description is required.");
+}
+
+function productActionError(error: unknown): ProductActionState {
+  console.error("Admin product action failed", error);
+  return {
+    error: error instanceof Error ? error.message : "Could not save the product. Please try again.",
+  };
+}
+
+export async function createProductAction(_state: ProductActionState, formData: FormData): Promise<ProductActionState> {
   await requireAdmin();
-  const input = await buildProductInput(formData);
-  await createProduct(input);
+  try {
+    const input = await buildProductInput(formData);
+    validateProductInput(input);
+    await createProduct(input);
+  } catch (error) {
+    return productActionError(error);
+  }
   revalidatePath("/admin/products");
   revalidatePath("/shop");
   redirect("/admin/products");
 }
 
-export async function updateProductAction(id: string, existingImage: string, formData: FormData) {
+export async function updateProductAction(
+  id: string,
+  existingImage: string,
+  _state: ProductActionState,
+  formData: FormData,
+): Promise<ProductActionState> {
   await requireAdmin();
-  const input = await buildProductInput(formData, existingImage);
-  await updateProduct(id, input);
+  try {
+    const input = await buildProductInput(formData, existingImage);
+    validateProductInput(input);
+    await updateProduct(id, input);
+  } catch (error) {
+    return productActionError(error);
+  }
   revalidatePath("/admin/products");
   revalidatePath("/shop");
   redirect("/admin/products");
