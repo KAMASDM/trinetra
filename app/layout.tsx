@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { Cinzel, Cormorant_Garamond, Jost } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, Jost, Geist } from "next/font/google";
 import CartProviderShell from "@/components/ecommerce/CartProviderShell";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -37,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cinzel.variable} ${cormorant.variable} ${jost.variable}`}
+      className={cn(cinzel.variable, cormorant.variable, jost.variable, "font-sans", geist.variable)}
     >
       <body>
         <CartProviderShell>{children}</CartProviderShell>

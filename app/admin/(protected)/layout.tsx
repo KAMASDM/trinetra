@@ -1,49 +1,31 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { verifySession } from "@/lib/auth/dal";
-import { logoutAction } from "@/app/admin/actions";
-
-const navItems = [
-  { href: "/admin", label: "Dashboard" },
-  { href: "/admin/products", label: "Products" },
-  { href: "/admin/orders", label: "Orders" },
-  { href: "/admin/customers", label: "Customers" },
-];
+import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/separator";
+import { Toaster } from "@/components/ui/sonner";
+import AdminSidebar from "@/components/admin/AdminSidebar";
+import AdminCommandPalette from "@/components/admin/AdminCommandPalette";
 
 export default async function AdminProtectedLayout({ children }: { children: React.ReactNode }) {
   const session = await verifySession();
   if (!session) redirect("/admin/login");
 
   return (
-    <div className="min-h-screen bg-ivory">
-      <header className="border-b border-gold/20 bg-charcoal">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <p className="eyebrow-stitch mb-1 text-gold/70">Trinetra</p>
-            <p className="font-cinzel text-xl text-warm-white">Commerce Desk</p>
-          </div>
-          <nav className="flex flex-wrap items-center gap-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="px-4 py-2 text-xs uppercase tracking-[0.25em] text-warm-white/70 hover:text-gold transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/shop" className="btn-outline-gold !border-gold/40 !text-gold !py-2 !px-4 text-xs">
-              View Storefront
-            </Link>
-            <form action={logoutAction}>
-              <button type="submit" className="px-4 py-2 text-xs uppercase tracking-[0.25em] text-warm-white/50 hover:text-crimson transition-colors">
-                Logout
-              </button>
-            </form>
-          </nav>
-        </div>
-      </header>
-      <main className="max-w-7xl mx-auto px-6 py-10">{children}</main>
-    </div>
+    <SidebarProvider
+      style={{ "--sidebar-width": "16rem" } as React.CSSProperties}
+      className="bg-ivory"
+    >
+      <AdminSidebar />
+      <SidebarInset className="bg-ivory">
+        <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-3 border-b border-gold/15 bg-warm-white/95 px-4 backdrop-blur">
+          <SidebarTrigger />
+          <Separator orientation="vertical" className="h-5" />
+          <div className="flex-1" />
+          <AdminCommandPalette />
+        </header>
+        <main className="flex-1 px-4 py-8 md:px-8">{children}</main>
+      </SidebarInset>
+      <Toaster richColors position="top-right" />
+    </SidebarProvider>
   );
 }

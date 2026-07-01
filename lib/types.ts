@@ -143,3 +143,15 @@ export function formatPrice(price: number) {
     maximumFractionDigits: 0,
   }).format(price);
 }
+
+/** Fixed locale + timezone so server-rendered and client-hydrated output always match —
+ * `toLocaleDateString()` depends on the runtime's locale/timezone, which can differ
+ * between the Node SSR process and the browser and causes hydration mismatches. */
+export function formatAdminDate(value: number) {
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    timeZone: "Asia/Kolkata",
+  }).format(value);
+}

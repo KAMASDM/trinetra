@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import MarqueeStrip from "@/components/MarqueeStrip";
 import FeaturedCommerce from "@/components/ecommerce/FeaturedCommerce";
 import CollectionsSection from "@/components/CollectionsSection";
+import RegionalCraftBorder from "@/components/RegionalCraftBorder";
 import HeritageSection from "@/components/HeritageSection";
 import BridalSection from "@/components/BridalSection";
 import CraftsmanshipSection from "@/components/CraftsmanshipSection";
@@ -23,11 +24,17 @@ export default function Home() {
       <Hero />
       <MarqueeStrip />
       <FeaturedCommerce />
+      <RegionalCraftBorder variant="kutchi" />
       <CollectionsSection />
+      <RegionalCraftBorder variant="jaipuri" />
       <HeritageSection />
+      <RegionalCraftBorder variant="banarasi" />
       <BridalSection />
+      <RegionalCraftBorder variant="phulkari" />
       <CraftsmanshipSection />
+      <RegionalCraftBorder variant="kalamkari" />
       <TestimonialsSection />
+      <RegionalCraftBorder variant="banarasi" />
       <CTASection />
       <Footer />
     </main>

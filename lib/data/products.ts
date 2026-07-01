@@ -72,6 +72,26 @@ export async function getProductsByIds(ids: string[]): Promise<Map<string, Produ
   return map;
 }
 
+export async function getProductsBySlugs(slugs: string[]): Promise<Map<string, Product>> {
+  const uniqueSlugs = [...new Set(slugs.filter(Boolean))];
+  if (!uniqueSlugs.length) return new Map();
+  const map = new Map<string, Product>();
+  for (let i = 0; i < uniqueSlugs.length; i += 30) {
+    const batch = uniqueSlugs.slice(i, i + 30);
+    const snapshot = await adminDb.collection(COLLECTION).where("slug", "in", batch).get();
+    for (const doc of snapshot.docs) {
+      const product = withDefaults(doc.id, doc.data());
+      map.set(product.slug, product);
+    }
+  }
+  return map;
+}
+
+export async function listLowStockProducts(threshold = 5): Promise<Product[]> {
+  const products = await listAllProducts();
+  return products.filter((p) => p.status !== "archived" && p.inventory <= threshold);
+}
+
 export type ProductInput = Omit<Product, "id" | "createdAt" | "updatedAt">;
 
 export async function createProduct(input: ProductInput): Promise<string> {
@@ -99,4 +119,45 @@ export async function decrementInventory(id: string, quantity: number): Promise<
     .collection(COLLECTION)
     .doc(id)
     .update({ inventory: FieldValue.increment(-quantity) });
+}
+
+export type ProductAuditAction = "created" | "updated" | "deleted" | "bulk-updated" | "imported";
+
+export type ProductAuditEntry = {
+  id: string;
+  action: ProductAuditAction;
+  actorEmail?: string;
+  note?: string;
+  at: number;
+};
+
+export async function appendProductAuditLog(
+  productId: string,
+  entry: { action: ProductAuditAction; actorEmail?: string; note?: string },
+): Promise<void> {
+  await adminDb
+    .collection(COLLECTION)
+    .doc(productId)
+    .collection("auditLog")
+    .add({ ...entry, at: FieldValue.serverTimestamp() });
+}
+
+export async function listProductAuditLog(productId: string): Promise<ProductAuditEntry[]> {
+  const snapshot = await adminDb
+    .collection(COLLECTION)
+    .doc(productId)
+    .collection("auditLog")
+    .orderBy("at", "desc")
+    .limit(50)
+    .get();
+  return snapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      action: data.action,
+      actorEmail: data.actorEmail,
+      note: data.note,
+      at: toMillis(data.at) ?? Date.now(),
+    };
+  });
 }
